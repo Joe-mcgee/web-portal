@@ -1,6 +1,24 @@
-## *Love provides the lens to perceive the truth that sets us free*
-![mercury-cat.jpeg](https://github.com/Joe-mcgee/joe-mcgee.github.io/blob/issues/2/gtp-2/images/mercury-cat.jpeg)
-# Welcome to my Landing Site
-I, Taylor Hulsmans, known on the internet most commonly within the moniker Joe Mcgee, keeps this site as a portal of my virtual endevours.
+# joe-mcgee.github.io
 
-/wip/
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -8,7 +8,7 @@
 import styled from 'vue-styled-components'
 
 const StyledImg = styled.img`
-background-image: url(${require('@/assets/mercury-cat.png')});
+background-image: url(${require('@/assets/opening-gif.gif')});
 background-size: cover;
 grid-column: 1 / -1;
 grid-row: 1 / -1;

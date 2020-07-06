@@ -16,19 +16,22 @@ export function nestGrid(window) {
        */ 
   const width = window.innerWidth
   const height = window.innerHeight
-  const isPortrait = (height > width) ? true: false
-  const aPlusB = (isPortrait) ? height: width;
-  const a = aPlusB / Math.phi
-  const b = aPlusB - a;
+  //const isPortrait = (height > width) ? true: false
+  //const aPlusB = (isPortrait) ? height: width;
+  const a = width / Math.phi
+  const b = width - a;
 
   // for fibbonacci increments, test 13 and 21
-  const squareEdge = aPlusB / 21
+  //
+  //const squareEdge = isPortrait ? aPlusB / 13 : aPlusB / 21
+  const squareEdge = width / 21;
   console.log(squareEdge)
   return {
     width,
     height,
-    isPortrait,
-    aPlusB,
+    //isPortrait,
+    //aPlusB,
+    //fiddle.jshell.net/NotInUse/n2z3gy9g/show/?editor_console=#' 'eight: 100%;
     a,
     b,
     squareEdge,

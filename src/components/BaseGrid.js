@@ -2,11 +2,11 @@ import styled from 'vue-styled-components'
 import Home from '@/views/Home.vue'
 const baseGridProps = {
   nestData: {
-  aPlusB: Number,
+    //aPlusB: Number,
   a: Number,
   b: Number,
   height: Number,
-  isPortrait: Boolean,
+    //isPortrait: Boolean,
   squareEdge: Number,
   width: Number
   }

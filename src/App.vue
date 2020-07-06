@@ -1,32 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view v-bind="myProps"/>
   </div>
 </template>
-
+<script>
+import * as GoldenNest from './shared/GoldenNest.js';
+export default {
+  name: 'app',
+  data: function() {
+    return GoldenNest.nestGrid(window)
+  },
+  created() {
+    window.addEventListener("resize", () => {
+      let newFrame = GoldenNest.nestGrid(window)
+      Object.assign(this.$data, newFrame)
+    });
+  },
+  destroyed() {
+    window.removeEventListener("resize", () => {})
+  },
+  computed: {
+    myProps() {
+      console.log({...this.$data})
+      return  {
+        nestData: { ...this.$data }
+      };   
+  }
+}
+}
+</script>
 <style lang="scss">
+body {
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>

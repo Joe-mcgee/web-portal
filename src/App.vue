@@ -8,11 +8,11 @@ import * as GoldenNest from './shared/GoldenNest.js';
 export default {
   name: 'app',
   data: function() {
-    return GoldenNest.nestGrid(window)
+    return GoldenNest.nestGrid()
   },
   created() {
     window.addEventListener("resize", () => {
-      let newFrame = GoldenNest.nestGrid(window)
+      let newFrame = GoldenNest.nestGrid()
       Object.assign(this.$data, newFrame)
     });
   },
@@ -21,7 +21,6 @@ export default {
   },
   computed: {
     myProps() {
-      console.log({...this.$data})
       return  {
         nestData: { ...this.$data }
       };   

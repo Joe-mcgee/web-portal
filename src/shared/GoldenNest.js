@@ -1,6 +1,6 @@
 Math.phi = (1 + Math.sqrt(5))/2
 
-export function nestGrid(window) {
+export function nestGrid() {
   /* let a + b be the longest edge, and a be the short
        solve for a
        definition:
@@ -25,7 +25,6 @@ export function nestGrid(window) {
   //
   //const squareEdge = isPortrait ? aPlusB / 13 : aPlusB / 21
   const squareEdge = width / 21;
-  console.log(squareEdge)
   return {
     width,
     height,

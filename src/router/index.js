@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-//import Home from '../views/Home.vue'
-import * as BaseGrid from '../components/BaseGrid.js'
+import Home from '../views/Home.vue'
+//import * as BaseGrid from '../components/BaseGrid.js'
 Vue.use(VueRouter)
 
 
@@ -9,7 +9,7 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: BaseGrid.StyledBaseGrid,
+    component: Home,
   },
   {
     path: '/about',

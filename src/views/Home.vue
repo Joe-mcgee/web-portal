@@ -1,33 +1,29 @@
 <template >
   <div class="home">
-    <styled-opening-carousel :page=currentPage></styled-opening-carousel>
-    <styled-base-grid-generic nestData></styled-base-grid-generic>
+    <open-base v-bind:nestData=nestData :url=currentPage>
+    </open-base>
+    <middle-base v-bind:nestData=nestData>
+    </middle-base>
+    <bottom-base v-bind:nestData=nestData>
+    </bottom-base>
   </div>
 </template>
 
 <script>
-import styled from 'vue-styled-components'
+//import styled from 'vue-styled-components'
 import * as BaseGrid from '../components/BaseGrid.js'
-let StyledBaseGridGeneric = BaseGrid.styledBaseGridGeneric()
 
-const carouselProps = {
-  page: String,
-
-}
-const StyledOpeningCarousel = styled('img', carouselProps)`
-background-image: url(${ props => props.page}); 
-background-size: cover;
-grid-column: 1 / -1;
-grid-row: 1 / -1;
-width: 100%;
-height: 100%;
-`
+const OpenBase = BaseGrid.createBaseGrid('div')
+const MiddleBase = BaseGrid.createBaseGrid('div')
+const BottomBase = BaseGrid.createBaseGrid('div')
+    
 
 export default {
   name: 'Home',
   components: {
-    StyledOpeningCarousel,
-    StyledBaseGridGeneric,
+    OpenBase,
+    MiddleBase,
+    BottomBase,
   },
   props: {
     nestData: Object

@@ -29,7 +29,7 @@ export default {
     nestData: Object
   },
   data: () => ({
-    currentPage: require('@/assets/opening-gif.gif')
+    currentPage: require('@/assets/opening-gif-2.gif')
   }),
   created() {
     

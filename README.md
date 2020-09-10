@@ -1,6 +1,5 @@
-## *Love provides the lens to perceive the truth that sets us free*
+## Taylor Hulsmans
 ![mercury-cat.jpeg](https://github.com/Joe-mcgee/joe-mcgee.github.io/blob/master/mercury-cat.png)
-# Welcome to my Landing Site
-I, Taylor Hulsmans, known on the internet most commonly within the moniker Joe Mcgee, keeps this site as a portal of my virtual endevours.
-
+### Welcome to my Virtual Portal
+Within one will find links to my various endevours in cyberspace
 /wip/

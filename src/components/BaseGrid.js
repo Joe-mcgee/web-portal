@@ -29,7 +29,7 @@ export function createBaseGrid(tag) {
     display: grid;
     width: 100%;
     height: 100%;
-    grid-template-rows: repeat(13, ${(props)=> {
+    grid-template-rows: repeat(39, ${(props)=> {
       if (typeof props.nestData === 'undefined') {
         let baseProps = getBaseProps()
         return baseProps.squareEdge

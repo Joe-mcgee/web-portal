@@ -42,6 +42,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  background-color: #2E2B23;
 }
 
 </style>

@@ -25,12 +25,12 @@ export function createBaseGrid(tag) {
       return props.url ? props.url : require('@/assets/test-block.png')
     }
     });
-    background-size: cover;
-    backround-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
     display: grid;
     width: 100%;
     height: 100%;
-    grid-template-rows: repeat(39, ${(props)=> {
+    grid-template-rows: repeat(26, ${(props)=> {
       if (typeof props.nestData === 'undefined') {
         let baseProps = getBaseProps()
         return baseProps.squareEdge

@@ -54,6 +54,26 @@ function mapAreaToColumn(priority) {
 }
 export function createDiv(tag) {
   return styled(tag, getBasePropTypes())`
+    background-image: url(${(props) => {
+      switch (props.areas ? props.areas.indexOf('about') : 0) {
+        case 0:
+          return require('@/assets/About-big.jpeg')
+        case 1:
+          return require('@/assets/About-large.jpeg')
+
+        case 2:
+          return require('@/assets/About-big.jpeg')
+        case 3:
+          return require('@/assets/About-large.jpeg')
+
+        case 4:
+          return require('@/assets/About-big.jpeg')
+        case 5:
+            return require('@/assets/About-large.jpeg')
+      }
+      console.log('bad')
+    }});
+    background-size: contain;
     display: grid;
     width: 100%;
     height: 100%;

@@ -26,6 +26,7 @@ export function createBaseGrid(tag) {
     }
     });
     background-size: cover;
+    backround-repeat: no-repeat;
     display: grid;
     width: 100%;
     height: 100%;

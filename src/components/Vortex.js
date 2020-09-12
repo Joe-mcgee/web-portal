@@ -2,14 +2,13 @@ import styled from 'vue-styled-components'
 import * as GoldenNest from '@/shared/GoldenNest' 
 export function getBasePropTypes() {
   return {
-    url: String,
     nestData: {
       a: Number,
       b: Number,
       height: Number,
       squareEdge: Number,
       width: Number
-    }   
+    },
   }
 }
 
@@ -19,14 +18,14 @@ export function getBaseProps() {
 }
 
 
-export function createFooter(tag) {
+export function createDiv(tag) {
   return styled(tag, getBasePropTypes())`
     display: grid;
     width: 100%;
     height: 100%;
-    border-top: 5px solid #ffc400;
-    grid-row: 14/15;
-    grid-column: -1 / 1;
+    border: 3px green solid;
+    grid-row: 23;
+    grid-column:16;
   `
 }
 

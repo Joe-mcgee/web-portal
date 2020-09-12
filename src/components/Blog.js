@@ -1,4 +1,3 @@
-
 import styled from 'vue-styled-components'
 import * as GoldenNest from '@/shared/GoldenNest' 
 export function getBasePropTypes() {
@@ -10,8 +9,7 @@ export function getBasePropTypes() {
       squareEdge: Number,
       width: Number
     },
-    mouseX: Number,
-    mouseY: Number,
+    volume: Number
   }
 }
 
@@ -23,19 +21,14 @@ export function getBaseProps() {
 
 export function createDiv(tag) {
   return styled(tag, getBasePropTypes())`
-    pointer-events: none;
     display: grid;
     width: 100%;
     height: 100%; 
-    border: 3px solid #ffc400;
     grid-row: ${(props) => {
       if (typeof props.nestData === 'undefined') {
         props.nestData = getBaseProps()
       }
-      const y = props.mouseY ? props.mouseY : 1;
-      const row = Math.floor(y / props.nestData.squareEdge)
-      return `${row+1}/${row+2}`
-      
+      const volume = props.volume ? props.volume 
     }
     };
     grid-column: ${(props) => {

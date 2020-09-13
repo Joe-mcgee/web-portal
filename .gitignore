@@ -119,10 +119,14 @@ license.txt
 exports
 .cache
 build
+
+
 # local env files
 .env.local
 .env.*.local
 .env
+.env.development
+.env.production
 # Log files
 npm-debug.log*
 yarn-debug.log*

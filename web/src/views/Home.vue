@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import * as ProjectService from '@/shared/ProjectService.js'
+
 import * as VortexHelpers from '@/shared/VortexHelp'
 import * as BaseGrid from '../components/BaseGrid.js'
 import * as VortexComponent from '../components/Vortex.js'
@@ -55,7 +57,8 @@ export default {
     mouseY: 0,
     areas: ['about', 'projects', 'blog', 'archive', 'contact', 'holder']
   }),
-  created() {
+  async created() {
+    console.log(await ProjectService.getProjects())
   },
   destroyed() {
   },

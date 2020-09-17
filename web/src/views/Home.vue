@@ -8,6 +8,7 @@
       <blog :areas=areas ></blog>
       <archive :areas=areas></archive>
       <contact :areas=areas> </contact>
+      <holder :areas=areas> </holder>
       <vortex @click="shift"></vortex>
       <hover-effect v-bind:nestData=nestData
         :mouseX="mouseX" :mouseY="mouseY"></hover-effect>
@@ -33,6 +34,7 @@ const Projects = VortexHelpers.create('projects')
 const Blog = VortexHelpers.create('blog')
 const Archive = VortexHelpers.create('archive')
 const Contact = VortexHelpers.create('contact')
+const Holder = VortexHelpers.create('holder')
 const Vortex = VortexComponent.createDiv('div')
 
 export default {
@@ -46,6 +48,7 @@ export default {
     Blog,
     Archive,
     Contact,
+    Holder,
     Vortex,
   },
   props: {
@@ -55,7 +58,7 @@ export default {
     background: require('@/assets/spiral-cat.gif'),
     mouseX: 0,
     mouseY: 0,
-    areas: ['about', 'projects', 'blog', 'archive', 'contact', 'holder']
+    areas: ['about', 'projects', 'blog', 'contact', 'archive', 'holder']
   }),
   async created() {
     console.log(await ProjectService.getProjects())

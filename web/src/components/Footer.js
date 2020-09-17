@@ -24,7 +24,9 @@ export function createFooter(tag) {
     display: grid;
     width: 100%;
     height: 100%;
-    border-top: 5px solid #ffc400;
+    border-top: 3px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(42.5deg, #ffc400, #003bff);
     grid-row: 14/15;
     grid-column: -1 / 1;
   `

@@ -1,8 +1,8 @@
 .DS_Store
 node_modules
 /dist
-
-
+Old-githubio/
+web/dist/
 # strapi
 
 ############################

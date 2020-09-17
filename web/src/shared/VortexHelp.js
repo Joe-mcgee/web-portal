@@ -49,23 +49,17 @@ export function create(type) {
         case 1:
           return require(`@/assets/${type}-large.jpeg`)
 
-        case 2:
-          return require(`@/assets/${type}-big.jpeg`)
-        case 3:
-          return require(`@/assets/${type}-large.jpeg`)
-
-        case 4:
-          return require(`@/assets/${type}-big.jpeg`)
-        case 5:
-            return require(`@/assets/${type}-large.jpeg`)
       }
-      console.log('bad')
+      //return require(`@/assets/square.jpeg`)
+      
     }});
     background-size: contain;
     display: grid;
     width: 100%;
     height: 100%;
-    border: 5px red solid;
+    border: 3px solid;
+    border-image-source: linear-gradient(42.5deg, #ffc400, #003bff);
+    border-image-slice: 1;
     grid-row: ${(props) => {
       const area = props.areas ? props.areas.indexOf(type) : 0
       return mapAreaToRow(area)

@@ -27,7 +27,9 @@ export function createDiv(tag) {
     display: grid;
     width: 100%;
     height: 100%; 
-    border: 3px solid #ffc400;
+    border: 2px solid;
+    border-image-source: linear-gradient(137.5deg, #003bff, #ffc400);
+    border-image-slice: 1;
     grid-row: ${(props) => {
       if (typeof props.nestData === 'undefined') {
         props.nestData = getBaseProps()

@@ -20,10 +20,14 @@ export function getBaseProps() {
 
 export function createDiv(tag) {
   return styled(tag, getBasePropTypes())`
+    background-image: url(${(props) => {
+      return require('@/assets/vortex.gif')
+    }});
+    background-size: contain;
     display: grid;
     width: 100%;
     height: 100%;
-    border: 3px green solid;
+    border: 2px solid #ffc400;
     grid-row: 23;
     grid-column:16;
   `

@@ -40,8 +40,9 @@ export function mapAreaToColumn(priority) {
 }
 
 
-export function create(type) {
-  return styled('div', getBasePropTypes())`
+export function create(type, component) {
+  component = component ? component : 'div'
+  return styled(component, getBasePropTypes())`
     background-image: url(${(props) => {
       switch (props.areas ? props.areas.indexOf(type) : 0) {
         case 0:
@@ -57,7 +58,7 @@ export function create(type) {
     display: grid;
     width: 100%;
     height: 100%;
-    border: 3px solid;
+    border: 2px solid;
     border-image-source: linear-gradient(42.5deg, #ffc400, #003bff);
     border-image-slice: 1;
     grid-row: ${(props) => {

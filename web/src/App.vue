@@ -8,11 +8,11 @@ import * as GoldenNest from './shared/GoldenNest.js';
 export default {
   name: 'app',
   data: function() {
-    return GoldenNest.nestGrid()
+    return GoldenNest.nestGrid(21)
   },
   created() {
     window.addEventListener("resize", () => {
-      let newFrame = GoldenNest.nestGrid()
+      let newFrame = GoldenNest.nestGrid(21)
       Object.assign(this.$data, newFrame)
     });
   },

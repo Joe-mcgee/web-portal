@@ -3,12 +3,12 @@
     <open-base @mousemove="hoverEffect"
       v-bind:nestData=nestData
       :url=background>
-      <about :areas=areas></about>
-      <projects :areas=areas></projects>
-      <blog :areas=areas ></blog>
-      <archive :areas=areas></archive>
-      <contact :areas=areas></contact>
-      <finish :areas=areas></finish>
+      <about :areas=areas v-bind:nestData=nestData></about>
+      <projects :areas=areas v-bind:nestData=nestData></projects>
+      <blog :areas=areas v-bind:nestData=nestData ></blog>
+      <archive :areas=areas v-bind:nestData=nestData></archive>
+      <contact :areas=areas v-bind:nestData=nestData></contact>
+      <finish :areas=areas v-bind:nestData=nestData></finish>
       <vortex @click="shift"></vortex>
       <hover-effect v-bind:nestData=nestData
         :mouseX="mouseX" :mouseY="mouseY"></hover-effect>

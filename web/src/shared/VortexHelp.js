@@ -1,9 +1,23 @@
-
+import * as GoldenNest from '@/shared/GoldenNest' 
 import styled from 'vue-styled-components'
 export function getBasePropTypes() {
   return {
-    areas: Array
+    areas: Array,
+    nestData: { 
+      a: Number,
+      b: Number,
+      height: Number,
+      squareEdge: Number,
+      width: Number
+
+    }
   }
+}
+
+
+export function getBaseProps() {
+  return GoldenNest.nestGrid(window)
+  
 }
 export function mapAreaToRow(priority) {
   switch (priority) {
@@ -39,6 +53,17 @@ export function mapAreaToColumn(priority) {
   }
 }
 
+function getArea(position) {
+  let i = 1
+  let area_t0 = 1
+  let area_t1 = 1
+  while(i <= position ){ 
+    let diff = area_t1 - area_t0
+    area_t1 += diff
+    i++
+  }
+  return area_t1
+}
 
 export function create(type, component) {
   component = component ? component : 'div'
@@ -57,6 +82,29 @@ export function create(type, component) {
     background-size: contain;
     display: grid;
     width: 100%;
+    grid-template-rows: repeat(${(props) => {
+      let position = props.areas ? props.areas.indexOf(type) : 1
+      return getArea(position)
+
+    }}, ${(props)=> {
+      if (typeof props.nestData === 'undefined') {
+        let baseProps = getBaseProps()
+        return baseProps.squareEdge
+      }
+      return props.nestData !== '' ? props.nestData.squareEdge: getBaseProps().squareEdge
+    }
+    }px);
+    grid-template-columns: repeat(${(props) => { 
+      let position = props.areas ? props.areas.indexOf(type) : 1
+      return getArea(position)
+    }}, ${(props) => {
+      if (typeof props.nestData === 'undefined') {
+        let baseProps = getBaseProps()
+        return baseProps.squareEdge
+      }
+      return props.nestData !== '' ? props.nestData.squareEdge: getBaseProps().squareEdge
+    }
+    }px);
     height: 100%;
     border: 2px solid;
     border-image-source: linear-gradient(42.5deg, #ffc400, #003bff);
@@ -75,3 +123,13 @@ export function create(type, component) {
   `
 }
 
+export function iconCenter(div) {
+  return styled(div)`
+  display: grid;
+  grid-row: 1;
+  grid-column: 1;
+  justify-content: center;
+  align-content: center;
+`
+
+}

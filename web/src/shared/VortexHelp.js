@@ -73,6 +73,9 @@ export function create(type, component) {
         case 0:
           return require(`@/assets/${type}-big.jpeg`)
         case 1:
+          if (type === 'projects') {
+            return require(`@/assets/${type}-large.gif`)
+          }
           return require(`@/assets/${type}-large.jpeg`)
 
       }

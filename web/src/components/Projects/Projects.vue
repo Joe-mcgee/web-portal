@@ -4,6 +4,9 @@
   </div>
 </template>
 <script>
+import * as ProjectService from '@/shared/ProjectService.js'
+
+
 import Flask from 'vue-material-design-icons/Flask.vue'
 
 import { iconCenter } from '@/shared/VortexHelp'
@@ -18,8 +21,11 @@ export default {
     FlaskGrid
   },
   data: () => ({
-
+    projects: Array,
   }),
+  async created() {
+    this.projects = await ProjectService.getProjects()
+  }
 }
 
 </script>

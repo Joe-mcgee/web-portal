@@ -71,6 +71,7 @@ export default {
     areas: ['about', 'projects', 'blog', 'contact', 'archive', 'finish']
   }),
   async created() {
+    console.log(await ProjectService.getProjects())
   },
   destroyed() {
   },

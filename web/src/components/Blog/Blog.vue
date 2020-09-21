@@ -1,13 +1,19 @@
 <template>
   <div>
     <typewriter-grid fillColor="#003bff"></typewriter-grid>
+
+    <mini-title v-if="areas.indexOf('blog') < 3" >Blog</mini-title>
   </div>
 </template>
 <script>
 import Typewriter from 'vue-material-design-icons/Typewriter.vue'
 
-import { iconCenter } from '@/shared/VortexHelp'
+import {
+  iconCenter,
+  miniTitle,
+  } from '@/shared/VortexHelp'
 
+let MiniTitle = miniTitle()
 let TypewriterGrid = iconCenter(Typewriter)
 export default {
   name: 'Blog',
@@ -16,6 +22,7 @@ export default {
   },
   components: {
     TypewriterGrid,
+    MiniTitle,
   },
   data: () => ({
 

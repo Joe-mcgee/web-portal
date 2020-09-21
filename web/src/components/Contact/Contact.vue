@@ -1,13 +1,18 @@
 <template>
   <div>
     <human-greeting-proximity-grid fillColor="#003bff"></human-greeting-proximity-grid>
-  </div>
+
+    <mini-title v-if="areas.indexOf('contact') < 3" >Contact</mini-title> </div>
 </template>
 <script>
 import HumanGreetingProximity from 'vue-material-design-icons/HumanGreetingProximity.vue'
 
-import { iconCenter } from '@/shared/VortexHelp'
+import {
+  iconCenter,
+  miniTitle,
+  } from '@/shared/VortexHelp'
 
+let MiniTitle = miniTitle()
 let HumanGreetingProximityGrid = iconCenter(HumanGreetingProximity)
 export default {
   name: 'Contact',
@@ -16,6 +21,7 @@ export default {
   },
   components: {
     HumanGreetingProximityGrid,
+    MiniTitle
   },
   data: () => ({
 

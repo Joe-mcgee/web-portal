@@ -136,3 +136,13 @@ export function iconCenter(div) {
 `
 
 }
+
+export function miniTitle() {
+  return styled('div')`
+    display: grid;
+    grid-column: 2/-1;
+    grid-row: 1/2;
+    justify-content: left;
+    align-content: center;
+  `
+}

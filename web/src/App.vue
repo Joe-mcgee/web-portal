@@ -29,6 +29,12 @@ export default {
 }
 </script>
 <style lang="scss">
+@font-face {
+  font-family: "commodore_64";
+  src: local("commodore_64"),
+    url('./fonts/commodore_64/Commodore-64-v6.3.TTF') format("truetype");
+}
+
 body {
   margin: 0;
 }
@@ -36,11 +42,12 @@ html {
   background-color: #2E2B23;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "commodore_64", Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ffc400;
+  text-shadow: -1px -1px 0 #003bff, 1px -1px 0 #003bff, -1px 1px 0 #003bff, 1px 1px 0 #003bff;
   margin: 0;
   padding: 0;
   width: 100%;

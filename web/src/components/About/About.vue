@@ -1,6 +1,8 @@
 <template>
   <div>
     <information-variant-grid fillColor="#003bff"></information-variant-grid>
+
+    <mini-title v-if="areas.indexOf('about') < 3" >About</mini-title>
   </div>
 </template>
 <script>
@@ -8,9 +10,12 @@
 
 import InformationVariant from 'vue-material-design-icons/InformationVariant.vue'
 
+import {
+  iconCenter,
+  miniTitle,
+  } from '@/shared/VortexHelp'
 
-import { iconCenter } from '@/shared/VortexHelp'
-
+let MiniTitle = miniTitle()
 let InformationVariantGrid = iconCenter(InformationVariant)
 export default {
   name: 'About',
@@ -18,7 +23,8 @@ export default {
     areas: Array,
   },
   components: {
-    InformationVariantGrid
+    InformationVariantGrid,
+    MiniTitle
   },
   data: () => ({
 

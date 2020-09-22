@@ -17,60 +17,7 @@ export function getProps(fibShort, fibLong) {
   const width = window.innerWidth
   const height = window.innerHeight
   const isPortrait = (height > width) ? true: false
-
-  
-  const activeLength = width
-  
-  let squareEdge = (activeLength) / (isPortrait ? fibShort : fibLong)
-  // for fibbonacci increments, test 13 and 21
-  //
-  //
-  //
-
-    /*
-  if (isPortrait) {
-  let diff = isPortrait ? height - width : width - height
-  
-  squareEdge = squareEdge - diff
-    let pxmod = 0
-    let xi = width
-    let yi = height
-    while (pxmod < (yi - xi)) {
-      console.log(`pxmode${pxmod}, xi${xi},yi${yi}`)
-      pxmod += 1
-      yi -= 1
-      xi -=1
-      
-      if (xi < 0) {
-        xi = 0
-        console.log('hi')
-        break;
-      }
-      squareEdge -= 1
-    }
-  }
-
-  if (!isPortrait) {
-    let pxmod = 0
-    let xi = width
-    let yi = height
-    while (pxmod < (xi - yi)) {
-      console.log(`pxmode${pxmod}, xi${xi},yi${yi}`)
-      pxmod += 1
-      yi -= 1
-      xi -=1
-      
-      if (yi < 0) {
-        yi = 0
-        break;
-      }
-      squareEdge -= 1
-    }
-  }
-  */
-  console.log(`widht ${width} height ${height} const calc width`)
-  console.log(`portraitwidthcalc ${squareEdge*fibShort} height ${squareEdge*fibLong} const calc width`)
-  console.log(`landscapetwidthcalc ${squareEdge*fibLong} height ${squareEdge*fibShort} const calc width`)
+  let squareEdge = width / (isPortrait ? fibShort : fibLong)
   return {
     width,
     height,

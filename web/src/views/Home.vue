@@ -1,5 +1,4 @@
 <template >
-  <div class="home">
     <open-base @mousemove="hoverEffect"
       v-bind:nestData=nestData
       :url=background>
@@ -9,12 +8,11 @@
       <archive :areas=areas v-bind:nestData=nestData></archive>
       <contact :areas=areas v-bind:nestData=nestData></contact>
       <finish :areas=areas v-bind:nestData=nestData></finish>
-      <vortex @click="shift"></vortex>
+      <vortex @click="shift" v-bind:nestData=nestData></vortex>
       <hover-effect v-bind:nestData=nestData
         :mouseX="mouseX" :mouseY="mouseY"></hover-effect>
       <foot></foot>
     </open-base>
-  </div>
 </template>
 
 <script>

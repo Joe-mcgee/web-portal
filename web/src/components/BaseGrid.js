@@ -8,13 +8,14 @@ export function getBasePropTypes() {
       b: Number,
       height: Number,
       squareEdge: Number,
-      width: Number
+      width: Number,
+      isPortrait: Boolean,
     }   
   }
 }
 
 export function getBaseProps() {
-  return GoldenNest.nestGrid(window)
+  return GoldenNest.getProps(window)
   
 }
 
@@ -30,7 +31,10 @@ export function createBaseGrid(tag) {
     display: grid;
     width: 100%;
     height: 100%;
-    grid-template-rows: repeat(26, ${(props)=> {
+    grid-template-rows: repeat(${(props) => {
+      return props.nestData.isPortrait ? 21: 13
+
+    } }, ${(props)=> {
       if (typeof props.nestData === 'undefined') {
         let baseProps = getBaseProps()
         return baseProps.squareEdge
@@ -38,7 +42,9 @@ export function createBaseGrid(tag) {
       return props.nestData !== '' ? props.nestData.squareEdge: getBaseProps().squareEdge
     }
     }px);
-    grid-template-columns: repeat(21, ${(props) => {
+    grid-template-columns: repeat(${(props) => {
+      return props.nestData.isPortrait ? 13: 21
+    }}, ${(props) => {
       if (typeof props.nestData === 'undefined') {
         let baseProps = getBaseProps()
         return baseProps.squareEdge

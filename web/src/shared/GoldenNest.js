@@ -1,6 +1,6 @@
 Math.phi = (1 + Math.sqrt(5))/2
 
-export function nestGrid(nthFibbonaci) {
+export function getProps(fibShort, fibLong) {
   /* let a + b be the longest edge, and a be the short
        solve for a
        definition:
@@ -16,22 +16,13 @@ export function nestGrid(nthFibbonaci) {
        */ 
   const width = window.innerWidth
   const height = window.innerHeight
-  //const isPortrait = (height > width) ? true: false
-  //const width = (isPortrait) ? height: width;
-  const a = width / Math.phi
-  const b = width - a;
-
-  // for fibbonacci increments, test 13 and 21
-  //
-  //const squareEdge = isPortrait ? width / 13 : width / 21
-  const squareEdge = width / nthFibbonaci;
+  const isPortrait = (height > width) ? true: false
+  let squareEdge = width / (isPortrait ? fibShort : fibLong)
   return {
     width,
     height,
-    //isPortrait,
-    //width,
-    a,
-    b,
+    isPortrait,
     squareEdge,
   }
 }
+

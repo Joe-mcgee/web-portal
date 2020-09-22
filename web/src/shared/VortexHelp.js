@@ -7,6 +7,7 @@ export function getBasePropTypes() {
       a: Number,
       b: Number,
       height: Number,
+      isPortrait: Boolean,
       squareEdge: Number,
       width: Number
 
@@ -16,23 +17,23 @@ export function getBasePropTypes() {
 
 
 export function getBaseProps() {
-  return GoldenNest.nestGrid(window)
+  return GoldenNest.getProps(window)
   
 }
 export function mapAreaToRow(priority) {
   switch (priority) {
     case 0:
-      return '14/27';
+      return '1/14';
     case 1:
-      return '14/22';
+      return '1/9';
     case 2:
-      return '22/27';
+      return '9/14';
     case 3:
-      return '24/27';
+      return '11/14';
     case 4:
-      return '22/24';
+      return '9/11';
     case 5:
-      return '22/23';
+      return '9/10';
   }
 }
 
@@ -103,18 +104,18 @@ export function create(type, component) {
     }
     }px);
     height: 100%;
-    border: 2px solid;
+    border: 1px solid;
     border-image-source: linear-gradient(42.5deg, #ffc400, #003bff);
     border-image-slice: 1;
     grid-row: ${(props) => {
       const area = props.areas ? props.areas.indexOf(type) : 0
-      return mapAreaToRow(area)
+      return props.nestData.isPortrait ? mapAreaToColumn(area) :mapAreaToRow(area)
 
     }
     };
     grid-column: ${(props) => {
       const area = props.areas ? props.areas.indexOf(type) : 0
-      return mapAreaToColumn(area) 
+      return props.nestData.isPortrait ? mapAreaToRow(area) :mapAreaToColumn(area) 
     }
     };
   `

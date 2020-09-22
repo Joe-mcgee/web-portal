@@ -7,13 +7,14 @@ export function getBasePropTypes() {
       b: Number,
       height: Number,
       squareEdge: Number,
+      isPortrait: Number,
       width: Number
     },
   }
 }
 
 export function getBaseProps() {
-  return GoldenNest.nestGrid(window)
+  return GoldenNest.getProps(window)
   
 }
 
@@ -28,8 +29,12 @@ export function createDiv(tag) {
     width: 100%;
     height: 100%;
     border: 2px solid #ffc400;
-    grid-row: 23;
-    grid-column:16;
+    grid-row: ${(props) => {
+    return props.nestData.isPortrait ? 16 : 10
+    }};
+    grid-column:${(props) => {
+    return props.nestData.isPortrait ? 10 : 16
+    }};
   `
 }
 

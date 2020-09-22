@@ -16,7 +16,7 @@ export function getBasePropTypes() {
 }
 
 export function getBaseProps() {
-  return GoldenNest.nestGrid(window)
+  return GoldenNest.getProps(window)
   
 }
 

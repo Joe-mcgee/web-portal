@@ -8,11 +8,11 @@ import * as GoldenNest from './shared/GoldenNest.js';
 export default {
   name: 'app',
   data: function() {
-    return GoldenNest.nestGrid(21)
+    return GoldenNest.getProps(13,21)
   },
   created() {
     window.addEventListener("resize", () => {
-      let newFrame = GoldenNest.nestGrid(21)
+      let newFrame = GoldenNest.getProps(13, 21)
       Object.assign(this.$data, newFrame)
     });
   },
@@ -50,6 +50,7 @@ p {
 }
 html {
   background-color: #2E2B23;
+  width: 100%;
 }
 #app {
   font-family: "commodore_64", Avenir, Helvetica, Arial, sans-serif;
@@ -59,8 +60,7 @@ html {
   color: #ffc400;
   text-shadow: -1px -1px 0 #003bff, 1px -1px 0 #003bff, -1px 1px 0 #003bff, 1px 1px 0 #003bff;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  margin: 0 auto;
   background-color: #2E2B23;
 }
 

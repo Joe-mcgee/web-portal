@@ -1,5 +1,5 @@
 
-![mercury-cat.jpeg](https://github.com/Joe-mcgee/joe-mcgee.github.io/blob/issues/2/gtp-2/images/mercury-cat.jpeg)
+![mercury-cat.jpeg](https://github.com/Joe-mcgee/joe-mcgee.github.io/blob/master/mercury-cat.png)
 
 
 /wip/

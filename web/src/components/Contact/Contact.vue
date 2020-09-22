@@ -2,7 +2,7 @@
   <div>
     <human-greeting-proximity-grid fillColor="#003bff"></human-greeting-proximity-grid>
 
-    <mini-title v-if="areas.indexOf('contact') < 3" >Contact</mini-title> </div>
+    <mini-title>Contact</mini-title> </div>
 </template>
 <script>
 import HumanGreetingProximity from 'vue-material-design-icons/HumanGreetingProximity.vue'

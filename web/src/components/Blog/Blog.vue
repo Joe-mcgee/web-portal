@@ -2,7 +2,7 @@
   <div>
     <typewriter-grid fillColor="#003bff"></typewriter-grid>
 
-    <mini-title v-if="areas.indexOf('blog') < 3" >Blog</mini-title>
+    <mini-title>Blog</mini-title>
   </div>
 </template>
 <script>

@@ -53,17 +53,11 @@ export function mapAreaToColumn(priority) {
   }
 }
 
-function getArea(position) {
-  let i = 1
-  let area_t0 = 1
-  let area_t1 = 1
-  while(i <= position ){ 
-    let diff = area_t1 - area_t0
-    area_t1 += diff
-    i++
-  }
-  return area_t1
+function fibonacci(num) {
+  if (num <= 1) return 1;
+  return fibonacci(num - 1) + fibonacci(num - 2);
 }
+
 
 export function create(type, component) {
   component = component ? component : 'div'
@@ -87,7 +81,7 @@ export function create(type, component) {
     width: 100%;
     grid-template-rows: repeat(${(props) => {
       let position = props.areas ? props.areas.indexOf(type) : 1
-      return getArea(position)
+      return fibonacci(6-position)
 
     }}, ${(props)=> {
       if (typeof props.nestData === 'undefined') {
@@ -99,7 +93,7 @@ export function create(type, component) {
     }px);
     grid-template-columns: repeat(${(props) => { 
       let position = props.areas ? props.areas.indexOf(type) : 1
-      return getArea(position)
+      return fibonacci(6-position)
     }}, ${(props) => {
       if (typeof props.nestData === 'undefined') {
         let baseProps = getBaseProps()
@@ -133,16 +127,20 @@ export function iconCenter(div) {
   grid-column: 1;
   justify-content: center;
   align-content: center;
+
+  border-bottom: 1px solid rgba(0,0,0,0.38);
 `
 
 }
 
 export function miniTitle() {
-  return styled('div')`
+  return styled('h1')`
     display: grid;
     grid-column: 2/-1;
     grid-row: 1/2;
     justify-content: left;
     align-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.38);
   `
 }

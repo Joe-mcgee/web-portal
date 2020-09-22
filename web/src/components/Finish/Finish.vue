@@ -2,7 +2,7 @@
   <div>
     <flag-grid fillColor="#003bff"></flag-grid>
 
-    <mini-title v-if="areas.indexOf('finish') < 3" >Fin</mini-title>
+    <mini-title>Fin</mini-title>
   </div>
 </template>
 <script>
@@ -33,7 +33,6 @@ export default {
 
   }),
   created() {
-    console.log(this.$props)
   }
 }
 

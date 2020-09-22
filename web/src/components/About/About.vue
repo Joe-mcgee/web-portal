@@ -2,7 +2,7 @@
   <div>
     <information-variant-grid fillColor="#003bff"></information-variant-grid>
 
-    <mini-title v-if="areas.indexOf('about') < 3" >About</mini-title>
+    <mini-title>About</mini-title>
   </div>
 </template>
 <script>

@@ -34,8 +34,18 @@ export default {
   src: local("commodore_64"),
     url('./fonts/commodore_64/Commodore-64-v6.3.TTF') format("truetype");
 }
-
-body {
+* {
+  margin: 0;
+}
+h1 {
+  font-size: 3.6vw;
+}
+h2 {
+  font-size: 2.6vw;
+}
+p {
+  font-size: 1.6vw;
+}body {
   margin: 0;
 }
 html {
@@ -48,7 +58,6 @@ html {
   text-align: center;
   color: #ffc400;
   text-shadow: -1px -1px 0 #003bff, 1px -1px 0 #003bff, -1px 1px 0 #003bff, 1px 1px 0 #003bff;
-  margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;

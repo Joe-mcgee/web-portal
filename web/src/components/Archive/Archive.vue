@@ -2,7 +2,7 @@
   <div>
     <script-text-outline-grid fillColor="#003bff"></script-text-outline-grid>
 
-    <mini-title v-if="areas.indexOf('archive') < 3" >Archive</mini-title>
+    <mini-title>Archive</mini-title>
   </div>
 </template>
 <script>

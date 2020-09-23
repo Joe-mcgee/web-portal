@@ -28,13 +28,14 @@
       v-for="(about, k) in aboutsFilter"
       :key="k + 'content'"
       :iterator="k">
-      {{about.content}}
+      {{about.content | truncate(areas.indexOf('about'), '...')}}
     </content-a>
     <!--<categories-a v-if="abouts" :about="abouts[0]"></categories-a> -->   
   </div>
 </template>
 <script>
 
+import * as ListItems from '@/components/ListItems.js'
 import styled from 'vue-styled-components'
 import * as ApiService from '@/shared/ApiService.js'
 
@@ -57,85 +58,17 @@ function getBasePropTypes() {
     title: String
 
   }
-}  
-let LogoA = styled('img', getBasePropTypes())`
-  grid-row: ${(props) => {
-    console.log(props.areas.indexOf('about'))
-    let position = props.areas ? props.areas.indexOf('about') : 1
-    if (position <  2) {
-      return props.iterator ? `${(props.iterator+1)*2}/${2+(1+props.iterator)*2}` : '2/4'
-    }
-    return props.iterator ? `${(props.iterator+2)}/${(3+props.iterator)}` : '2/2'
-  }};
-  grid-column: ${(props) => {
-    
-    let position = props.areas ? props.areas.indexOf('about') : 1
-    
-    if (position <  2) {
-      return '1/3'
-    }
-    return '1/2'
-  }};
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-`
-let TitleA = styled('h2', getBasePropTypes())`
-  
-  display: grid;
-  grid-row: ${(props) => {
-
-    let position = props.areas ? props.areas.indexOf('about') : 1
-    if (position < 2) {
-
-      return props.iterator ? `${2*(props.iterator+1)}` : '2'
-      //return props.iterator ? `${2+(props.iterator+1)}/${2+(1+props.iterator)}` : '2'
-    }
-
-      return props.iterator ? `${2+(props.iterator+1)}/${1+(1+props.iterator)}` : '2'
-  }};
-  grid-column: ${(props) => {
-
-  let position = props.areas ? props.areas.indexOf('about') : 1
-  if (position < 2) return '3/-1'; else return '2/-1'
-  }
-  };
-  align-content: center;
-  overflow: hidden;
-  font-size: ${(props) => {
-    let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
-    let adjustFont = `${3 + (0.0025*diff)}`
-    return `${adjustFont}vmin`
-  }}
-`
-
-let ContentA = styled('p', getBasePropTypes())`
-  grid-row: ${(props) => {
-
-    return props.iterator ? `${2*(props.iterator+1)+1}` : '3'
-  }};
-  grid-column: 3/-1;
-  align-content: center;
-  display: grid;
-  font-size: ${(props) => {
-    let diff = props.nestData.isPortrait ? (props.nestData.height - props.nestData.width): props.nestData.width - props.nestData.height
-    let adjustFont = `${2 + (0.0025*diff)}`
-    return `${adjustFont}vmin`
-  }}
-`
-
-
-let CategoriesA = styled('h2', getBasePropTypes())`
-  grid-row: -4/-2;
-  grid-column: -1/-2;
-`
+}
 import InformationVariant from 'vue-material-design-icons/InformationVariant.vue'
-
 import {
   iconCenter,
   miniTitle,
   } from '@/shared/VortexHelp'
 
+const LogoA = ListItems.createLogo('about')
+const TitleA = ListItems.createTitle('about')
+const ContentA = ListItems.createContent('about')
+const CategoriesA = ListItems.createCategories('about')
 let MiniTitle = miniTitle()
 let InformationVariantGrid = iconCenter(InformationVariant)
 export default {
@@ -157,14 +90,13 @@ export default {
   }),
   async created() {
     this.abouts = await ApiService.getAbouts()
-    console.log('abouts', this.abouts)
   },
   filters: {
       truncate: function (text, position, suffix) {
         let length;
         switch (position) {
           case 0:
-            length = 50
+            length = 100
             break
           case 1:
             length = 21
@@ -191,7 +123,6 @@ export default {
         let deepCopy;
         switch (position) {
           case 0:
-            console.log('0', this.abouts)
             return this.abouts
           case 1:
             return this.abouts.filter((about, i) => {
@@ -203,7 +134,6 @@ export default {
             return deepCopy.map((about) => {
               delete about.content
 
-              console.log(about)
               return about
             })
           case 3:

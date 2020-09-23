@@ -12,6 +12,7 @@
     </logo-a>
 
     <title-a
+      v-bind:nestData=nestData
       :areas=areas
       v-for="(contact, j) in contactsFilter"
       :key="j + 'title'"
@@ -21,6 +22,7 @@
     </title-a>
 
     <content-a
+      v-bind:nestData=nestData
       :areas=areas
       v-for="(contact, k) in contactsFilter"
       :key="k + 'content'"
@@ -31,6 +33,7 @@
 <script>
 import HumanGreetingProximity from 'vue-material-design-icons/HumanGreetingProximity.vue'
 
+import * as ListItems from '@/components/ListItems.js'
 import * as ApiService from '@/shared/ApiService.js'
 import styled from 'vue-styled-components'
 import {
@@ -55,100 +58,18 @@ function getBasePropTypes() {
     title: String
 
   }
-}  
-let LogoA = styled('img', getBasePropTypes())`
-  grid-row: ${(props) => {
-    let position = props.areas ? props.areas.indexOf('contact') : 1
-    switch (position) {
-      case 0:
-        return props.iterator ? `${(props.iterator+1)*2}/${2+(1+props.iterator)*2}` : '2/4'
-      case 1:
-        return props.iterator ? `${(props.iterator+1)*2}/${2+(1+props.iterator)*2}` : '2/4'
-      case 2:
-        return props.iterator ? `${(props.iterator+2)}/${(3+props.iterator)}` : '2/2'
-      case 3:
-        return props.iterator ? `${(props.iterator+2)}/${(3+props.iterator)}` : '2/2'
-      case 4:
-        return props.iterator ? `${(props.iterator+2)}/${(3+props.iterator)}` : '2/2'
-    }
-  }};
-  grid-column: ${(props) => {
-    
-    let position = props.areas ? props.areas.indexOf('contact') : 1
-    
-    switch (position) {
-      case 0:
-      return '1/3'
-      case 1:
-      return '1/3'
-      case 2:
-        return '1/2'
-      case 3:
-        return '1/2'
-      case 4:
-        return '1/2'
-    }
-  }};
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-`
-let TitleA = styled('h2', getBasePropTypes())`
-  
-  grid-row: ${(props) => {
+}
 
-    let position = props.areas ? props.areas.indexOf('contact') : 1
-    switch (position) {
-      case 0:
-        return props.iterator ? `${2+(props.iterator+1)}/${2+(1+props.iterator)}` : '2'
-      case 1:
-        return props.iterator ? `${2+(props.iterator+1)}/${2+(1+props.iterator)}` : '2'
-      case 2:
-        return props.iterator ? `${2+(props.iterator+1)}/${1+(1+props.iterator)}` : '2'
-      case 3:
-        return props.iterator ? `${2+(props.iterator+1)}/${1+(1+props.iterator)}` : '2'
-      case 4:
-        return props.iterator ? `${2+(props.iterator+1)}/${1+(1+props.iterator)}` : '2'
-    }
-  }};
-  display: grid;
-  grid-column: ${(props) => {
+const LogoA = ListItems.createLogo('contact')
+const TitleA = ListItems.createTitle('contact')
+const ContentA = ListItems.createContent('contact')
+const CategoriesA = ListItems.createCategories('contact')
 
-    let position = props.areas ? props.areas.indexOf('contact') : 1
-    switch (position) {
-      case 0:
-        return '3/-1'
-      case 1:
-        return '3/-1'
-      case 2:
-        return '2/-1'
-      case 3:
-        return '2/-1'
-      case 4:
-        return '2/-1'
-    }
-  }
-  };
-  justdify-content: center;
-  align-content: center;
-`
-
-let ContentA = styled('p', getBasePropTypes())`
-  grid-row: ${(props) => {
-
-    return props.iterator ? `${3+(props.iterator+1)}/${3+(1+props.iterator)}` : '3'
-  }};
-  grid-column: 3/-1;
-`
-
-let CategoriesA = styled('h2', getBasePropTypes())`
-  grid-row: -4/-2;
-  grid-column: -1/-2;
-`
 export default {
   name: 'Contact',
   props: {
     areas: Array,
+    nestData: Object
   },
   components: {
     HumanGreetingProximityGrid,
@@ -163,7 +84,6 @@ export default {
   }),
   async created() {
     this.contacts = await ApiService.getContacts()
-    console.log('hmm',this.contacts)
   },
   computed: {
 
@@ -173,7 +93,6 @@ export default {
         let deepCopy;
         switch (position) {
           case 0:
-            console.log('0', this.contacts)
             return this.contacts
           case 1:
             return this.contacts.filter((contact, i) => {
@@ -184,8 +103,6 @@ export default {
             deepCopy = JSON.parse(JSON.stringify(this.contacts))
             return deepCopy.map((contact) => {
               delete contact.content
-
-              console.log(contact)
               return contact
             })
           case 3:

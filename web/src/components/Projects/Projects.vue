@@ -40,7 +40,7 @@ import {
   iconCenter,
   miniTitle,
   } from '@/shared/VortexHelp'
-import * as ProjectListComponent from './ProjectList.js'
+import * as ListItems from '@/components/ListItems.js'
 
 let FlaskGrid = iconCenter(Flask)
 let MiniTitle = miniTitle()
@@ -64,76 +64,12 @@ function getBasePropTypes() {
     name: String
 
   }
-}  
-let LogoA = styled('img', getBasePropTypes())`
-  grid-row: ${(props) => {
-    console.log(props.areas.indexOf('projects'))
-    let position = props.areas ? props.areas.indexOf('projects') : 1
-    if (position <  2) {
-      return props.iterator ? `${(props.iterator+1)*2}/${2+(1+props.iterator)*2}` : '2/4'
-    }
-    return props.iterator ? `${(props.iterator+2)}/${(3+props.iterator)}` : '2/2'
-  }};
-  grid-column: ${(props) => {
-    
-    let position = props.areas ? props.areas.indexOf('projects') : 1
-    
-    if (position <  2) {
-      return '1/3'
-    }
-    return '1/2'
-  }};
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-`
-let TitleA = styled('h2', getBasePropTypes())`
-  
-  grid-row: ${(props) => {
+}
+const LogoA = ListItems.createLogo('projects')
+const TitleA = ListItems.createTitle('projects')
+const ContentA = ListItems.createContent('projects')
+const CategoriesA = ListItems.createCategories('projects')
 
-    let position = props.areas ? props.areas.indexOf('projects') : 1
-    if (position < 2) {
-
-      return props.iterator ? `${2+(props.iterator+1)}/${2+(1+props.iterator)}` : '2'
-    }
-
-      return props.iterator ? `${2+(props.iterator+1)}/${1+(1+props.iterator)}` : '2'
-  }};
-  display: grid;
-  align-content: center;
-  grid-column: ${(props) => {
-
-  let position = props.areas ? props.areas.indexOf('projects') : 1
-  if (position < 2) return '3/-1'; else return '2/-1'
-  }
-  };
-  font-size: ${(props) => {
-    console.log(props)
-    let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
-    let adjustFont = `${3 + (0.0025*diff)}`
-    return `${adjustFont}vmin`
-  }}
-`
-
-let ContentA = styled('p', getBasePropTypes())`
-  grid-row: ${(props) => {
-
-    return props.iterator ? `${3+(props.iterator+1)}/${3+(1+props.iterator)}` : '3'
-  }};
-  grid-column: 3/-1;
-  display: grid;
-  align-content: center;
-  font-size: ${(props) => {
-    let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
-    let adjustFont = `${2 + (0.0025*diff)}`
-    return `${adjustFont}vmin`
-  }}
-`
-
-let CategoriesA = styled('h2', getBasePropTypes())`
-  grid-row: -4/-2;
-  grid-column: -1/-2;
-`
 export default {
   name: 'Projects',
   props: {
@@ -159,7 +95,7 @@ export default {
         let length;
         switch (position) {
           case 0:
-            length = 50
+            length = 100
             break
           case 1:
             length = 39
@@ -186,7 +122,6 @@ export default {
         let deepCopy;
         switch (position) {
           case 0:
-            console.log('0', this.projects)
             return this.projects
           case 1:
             return this.projects.filter((project, i) => {
@@ -198,7 +133,6 @@ export default {
             return deepCopy.map((project) => {
               delete project.content
 
-              console.log(project)
               return project
             })
           case 3:

@@ -1,21 +1,16 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "contacts",
   "info": {
-    "name": "categories"
+    "name": "contacts"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "name": {
+    "title": {
       "type": "string"
-    },
-    "projects": {
-      "collection": "projects",
-      "via": "categories",
-      "dominant": true
     },
     "logo": {
       "model": "file",
@@ -28,9 +23,8 @@
       "plugin": "upload",
       "required": false
     },
-    "posts": {
-      "via": "categories",
-      "collection": "posts"
+    "content": {
+      "type": "string"
     }
   }
 }

@@ -1,21 +1,19 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "posts",
   "info": {
-    "name": "categories"
+    "name": "posts"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "name": {
-      "type": "string"
+    "content": {
+      "type": "richtext"
     },
-    "projects": {
-      "collection": "projects",
-      "via": "categories",
-      "dominant": true
+    "title": {
+      "type": "string"
     },
     "logo": {
       "model": "file",
@@ -28,9 +26,13 @@
       "plugin": "upload",
       "required": false
     },
-    "posts": {
-      "via": "categories",
-      "collection": "posts"
+    "url": {
+      "type": "string"
+    },
+    "categories": {
+      "collection": "categories",
+      "via": "posts",
+      "dominant": true
     }
   }
 }

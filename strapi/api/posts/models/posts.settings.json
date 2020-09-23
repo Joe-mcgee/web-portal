@@ -30,8 +30,8 @@
       "type": "string"
     },
     "categories": {
-      "collection": "categories",
       "via": "posts",
+      "collection": "categories",
       "dominant": true
     }
   }

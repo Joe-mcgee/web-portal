@@ -38,13 +38,13 @@ export default {
   margin: 0;
 }
 h1 {
-  font-size: 3.6vw;
+  font-size: 7vmin;
 }
 h2 {
-  font-size: 2.6vw;
+  font-size: 3.0vmin;
 }
 p {
-  font-size: 1.6vw;
+  font-size: 2.0vmin;
 }body {
   margin: 0;
 }
@@ -56,7 +56,6 @@ html {
   font-family: "commodore_64", Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #ffc400;
   text-shadow: -1px -1px 0 #003bff, 1px -1px 0 #003bff, -1px 1px 0 #003bff, 1px 1px 0 #003bff;
   padding: 0;

@@ -53,3 +53,20 @@ export async function getContact(id) {
   const response = await axios.get(`${getUrl()}/contacts/${id}`)
   return response.data
 }
+
+export async function getAbouts() {
+  const response = await axios.get(`${getUrl()}/abouts`)
+  response.data = response.data.map((contact) => {
+    contact.logo.url = `${getUrl()}${contact.logo.url}`
+    return contact
+
+  })
+  return response.data
+}
+
+
+export async function getAbout(id) {
+  const response = await axios.get(`${getUrl()}/abouts/${id}`)
+  return response.data
+}
+

@@ -12,20 +12,22 @@
     </logo-a>
 
     <title-a
+      v-bind:nestData=nestData
       :areas=areas
       v-for="(project, j) in projectsFilter"
       :key="j + 'title'"
       :iterator="j"
       :href="project.site">
-      {{project.name}}
+      {{project.title | truncate(areas.indexOf('projects'), '...')}}
     </title-a>
 
     <content-a
+      v-bind:nestData=nestData
       :areas=areas
       v-for="(project, k) in projectsFilter"
       :key="k + 'content'"
       :iterator="k">
-      {{project.content}}
+      {{project.content | truncate(areas.indexOf('projects'), '...')}}
     </content-a>
     <!--<categories-a v-if="projects" :project="projects[0]"></categories-a> -->   
   </div>
@@ -45,6 +47,11 @@ let MiniTitle = miniTitle()
 
 function getBasePropTypes() {
   return {
+    nestData: {
+      width: Number,
+      height: Number,
+      isPortrait: Boolean
+    },
     areas: Array,
     iterator: Number,
     categories: Array,
@@ -93,14 +100,19 @@ let TitleA = styled('h2', getBasePropTypes())`
       return props.iterator ? `${2+(props.iterator+1)}/${1+(1+props.iterator)}` : '2'
   }};
   display: grid;
+  align-content: center;
   grid-column: ${(props) => {
 
   let position = props.areas ? props.areas.indexOf('projects') : 1
   if (position < 2) return '3/-1'; else return '2/-1'
   }
   };
-  justdify-content: center;
-  align-content: center;
+  font-size: ${(props) => {
+    console.log(props)
+    let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
+    let adjustFont = `${3 + (0.0025*diff)}`
+    return `${adjustFont}vmin`
+  }}
 `
 
 let ContentA = styled('p', getBasePropTypes())`
@@ -109,6 +121,13 @@ let ContentA = styled('p', getBasePropTypes())`
     return props.iterator ? `${3+(props.iterator+1)}/${3+(1+props.iterator)}` : '3'
   }};
   grid-column: 3/-1;
+  display: grid;
+  align-content: center;
+  font-size: ${(props) => {
+    let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
+    let adjustFont = `${2 + (0.0025*diff)}`
+    return `${adjustFont}vmin`
+  }}
 `
 
 let CategoriesA = styled('h2', getBasePropTypes())`
@@ -134,6 +153,31 @@ export default {
   }),
   async created() {
     this.projects = await ProjectService.getProjects()
+  },
+  filters: {
+      truncate: function (text, position, suffix) {
+        let length;
+        switch (position) {
+          case 0:
+            length = 50
+            break
+          case 1:
+            length = 39
+            break
+          case 2:
+            length = 11
+            break
+          case (position > 2):
+            length = 0
+            break
+        }
+        if (typeof text === "undefined") text = ''
+        if (text.length > length) {
+            return text.substring(0, length) + suffix;
+        } else {
+            return text;
+        }
+      },
   },
   computed: {
     projectsFilter() {
@@ -161,14 +205,14 @@ export default {
             deepCopy = JSON.parse(JSON.stringify(this.projects))
             return deepCopy.map((projects) => {
               delete projects.content
-              delete projects.name
+              delete projects.title
               return projects
             })
           case 4:
             deepCopy = JSON.parse(JSON.stringify(this.projects))
             return deepCopy.map((projects) => {
               delete projects.content
-              delete projects.name
+              delete projects.title
               return projects
             })
         }

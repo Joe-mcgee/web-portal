@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "abouts",
   "info": {
-    "name": "categories"
+    "name": "about"
   },
   "options": {
     "increments": true,
@@ -12,10 +12,8 @@
     "title": {
       "type": "string"
     },
-    "projects": {
-      "collection": "projects",
-      "via": "categories",
-      "dominant": true
+    "content": {
+      "type": "richtext"
     },
     "logo": {
       "model": "file",
@@ -27,10 +25,6 @@
       ],
       "plugin": "upload",
       "required": false
-    },
-    "posts": {
-      "collection": "posts",
-      "via": "categories"
     }
   }
 }

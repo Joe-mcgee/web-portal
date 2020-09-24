@@ -1,7 +1,9 @@
 <template>
   <div>
     <typewriter-grid fillColor="#003bff"></typewriter-grid>
-    <mini-title>Blog</mini-title>
+    <mini-title
+      v-bind:nestData=nestData
+      >Blog</mini-title>
     <logo-a
       :areas=areas
       v-for="(blog, i) in blogsFilter"
@@ -37,30 +39,9 @@ import Typewriter from 'vue-material-design-icons/Typewriter.vue'
 import * as ListItems from '@/components/ListItems.js'
 import * as ApiService from '@/shared/ApiService.js'
 import styled from 'vue-styled-components'
-import {
-  iconCenter,
-  miniTitle,
-  } from '@/shared/VortexHelp'
 
-let MiniTitle = miniTitle()
-let TypewriterGrid = iconCenter(Typewriter)
-
-function getBasePropTypes() {
-  return {
-    areas: Array,
-    iterator: Number,
-    categories: Array,
-    content: String,
-    github: String,
-    logo: {
-      url: String
-    },
-    site: String,
-    title: String
-
-  }
-}
-
+let MiniTitle = ListItems.miniTitle()
+let TypewriterGrid = ListItems.iconCenter(Typewriter)
 const LogoA = ListItems.createLogo('blog')
 const TitleA = ListItems.createTitle('blog')
 const ContentA = ListItems.createContent('blog')

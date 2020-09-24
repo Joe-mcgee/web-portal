@@ -1,8 +1,10 @@
 <template>
   <div>
     <information-variant-grid fillColor="#003bff"></information-variant-grid>
-    <mini-title>About</mini-title>
-
+    <mini-title
+      v-bind:nestData=nestData
+      >
+      About</mini-title>
     <logo-a
       :areas=areas
       v-for="(about, i) in aboutsFilter"
@@ -38,39 +40,14 @@
 import * as ListItems from '@/components/ListItems.js'
 import styled from 'vue-styled-components'
 import * as ApiService from '@/shared/ApiService.js'
-
-function getBasePropTypes() {
-  return {
-    nestData: {
-      width: Number,
-      height: Number,
-      isPortrait: Boolean,
-    },
-    areas: Array,
-    iterator: Number,
-    categories: Array,
-    content: String,
-    github: String,
-    logo: {
-      url: String
-    },
-    site: String,
-    title: String
-
-  }
-}
 import InformationVariant from 'vue-material-design-icons/InformationVariant.vue'
-import {
-  iconCenter,
-  miniTitle,
-  } from '@/shared/VortexHelp'
 
 const LogoA = ListItems.createLogo('about')
 const TitleA = ListItems.createTitle('about')
 const ContentA = ListItems.createContent('about')
 const CategoriesA = ListItems.createCategories('about')
-let MiniTitle = miniTitle()
-let InformationVariantGrid = iconCenter(InformationVariant)
+let MiniTitle = ListItems.miniTitle()
+let InformationVariantGrid = ListItems.iconCenter(InformationVariant)
 export default {
   name: 'About',
   props: {
@@ -90,31 +67,6 @@ export default {
   }),
   async created() {
     this.abouts = await ApiService.getAbouts()
-  },
-  filters: {
-      truncate: function (text, position, suffix) {
-        let length;
-        switch (position) {
-          case 0:
-            length = 100
-            break
-          case 1:
-            length = 21
-            break
-          case 2:
-            length = 11
-            break
-          case (position > 2):
-            length = 0
-            break
-        }
-        if (typeof text === "undefined") text = ''
-        if (text.length > length) {
-            return text.substring(0, length) + suffix;
-        } else {
-            return text;
-        }
-      },
   },
   computed: {
     aboutsFilter() {

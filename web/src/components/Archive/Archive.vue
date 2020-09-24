@@ -2,24 +2,22 @@
   <div>
     <script-text-outline-grid fillColor="#003bff"></script-text-outline-grid>
 
-    <mini-title>Archive</mini-title>
+    <mini-title v-bind:nestData=nestData >Archive</mini-title>
   </div>
 </template>
 <script>
 
 import ScriptTextOutline from 'vue-material-design-icons/ScriptTextOutline.vue'
 
-import {
-  iconCenter,
-  miniTitle,
-  } from '@/shared/VortexHelp'
 
-let MiniTitle = miniTitle()
-let ScriptTextOutlineGrid = iconCenter(ScriptTextOutline)
+import * as ListItems from '@/components/ListItems.js'
+let MiniTitle = ListItems.miniTitle()
+let ScriptTextOutlineGrid = ListItems.iconCenter(ScriptTextOutline)
 export default {
   name: 'Archive',
   props: {
     areas: Array,
+    nestData: Object,
   },
   components: {
     ScriptTextOutlineGrid,

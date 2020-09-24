@@ -1,7 +1,9 @@
 <template>
   <div>
     <human-greeting-proximity-grid fillColor="#003bff"></human-greeting-proximity-grid>
-    <mini-title>Contact</mini-title>
+    <mini-title
+      v-bind:nestData=nestData
+      >Contact</mini-title>
     <logo-a
       :areas=areas
       v-for="(contact, i) in contactsFilter"
@@ -18,7 +20,7 @@
       :key="j + 'title'"
       :iterator="j"
       :href="contact.site">
-      {{contact.title}}
+      {{contact.title | truncate(areas.indexOf('contact'), '...')}}
     </title-a>
 
     <content-a
@@ -27,7 +29,7 @@
       v-for="(contact, k) in contactsFilter"
       :key="k + 'content'"
       :iterator="k">
-      {{contact.content}}
+      {{contact.content | truncate(areas.indexOf('contact'), '...')}}
     </content-a> </div> 
 </template>
 <script>
@@ -36,13 +38,9 @@ import HumanGreetingProximity from 'vue-material-design-icons/HumanGreetingProxi
 import * as ListItems from '@/components/ListItems.js'
 import * as ApiService from '@/shared/ApiService.js'
 import styled from 'vue-styled-components'
-import {
-  iconCenter,
-  miniTitle,
-  } from '@/shared/VortexHelp'
 
-let MiniTitle = miniTitle()
-let HumanGreetingProximityGrid = iconCenter(HumanGreetingProximity)
+let MiniTitle = ListItems.miniTitle()
+let HumanGreetingProximityGrid = ListItems.iconCenter(HumanGreetingProximity)
 
 function getBasePropTypes() {
   return {

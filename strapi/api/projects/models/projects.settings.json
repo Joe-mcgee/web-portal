@@ -34,8 +34,8 @@
       "type": "string"
     },
     "categories": {
-      "via": "projects",
-      "collection": "categories"
+      "collection": "categories",
+      "via": "projects"
     }
   }
 }

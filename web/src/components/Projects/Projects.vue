@@ -1,7 +1,9 @@
 <template>
   <div>
     <flask-grid fillColor="#003bff"></flask-grid>
-    <mini-title>Projects</mini-title>
+    <mini-title
+      v-bind:nestData=nestData
+      >Projects</mini-title>
     <logo-a
       :areas=areas
       v-for="(project, i) in projectsFilter"
@@ -36,35 +38,10 @@
 import styled from 'vue-styled-components'
 import * as ProjectService from '@/shared/ProjectService.js'
 import Flask from 'vue-material-design-icons/Flask.vue'
-import {
-  iconCenter,
-  miniTitle,
-  } from '@/shared/VortexHelp'
 import * as ListItems from '@/components/ListItems.js'
 
-let FlaskGrid = iconCenter(Flask)
-let MiniTitle = miniTitle()
-
-function getBasePropTypes() {
-  return {
-    nestData: {
-      width: Number,
-      height: Number,
-      isPortrait: Boolean
-    },
-    areas: Array,
-    iterator: Number,
-    categories: Array,
-    content: String,
-    github: String,
-    logo: {
-      url: String
-    },
-    site: String,
-    name: String
-
-  }
-}
+const FlaskGrid = ListItems.iconCenter(Flask)
+const MiniTitle = ListItems.miniTitle()
 const LogoA = ListItems.createLogo('projects')
 const TitleA = ListItems.createTitle('projects')
 const ContentA = ListItems.createContent('projects')
@@ -89,31 +66,6 @@ export default {
   }),
   async created() {
     this.projects = await ProjectService.getProjects()
-  },
-  filters: {
-      truncate: function (text, position, suffix) {
-        let length;
-        switch (position) {
-          case 0:
-            length = 100
-            break
-          case 1:
-            length = 39
-            break
-          case 2:
-            length = 11
-            break
-          case (position > 2):
-            length = 0
-            break
-        }
-        if (typeof text === "undefined") text = ''
-        if (text.length > length) {
-            return text.substring(0, length) + suffix;
-        } else {
-            return text;
-        }
-      },
   },
   computed: {
     projectsFilter() {

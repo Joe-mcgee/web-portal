@@ -142,6 +142,5 @@ export function miniTitle() {
     justify-content: left;
     align-content: center;
     overflow: hidden;
-    border-bottom: 1px solid rgba(0,0,0,0.38);
   `
 }

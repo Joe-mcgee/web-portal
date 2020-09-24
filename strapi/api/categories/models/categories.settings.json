@@ -13,8 +13,8 @@
       "type": "string"
     },
     "projects": {
-      "collection": "projects",
       "via": "categories",
+      "collection": "projects",
       "dominant": true
     },
     "logo": {

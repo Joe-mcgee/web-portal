@@ -21,6 +21,31 @@ function getBasePropTypes() {
   }
 }  
 
+export function iconCenter(div) {
+  return styled(div)`
+  display: grid;
+  grid-row: 1;
+  grid-column: 1;
+  justify-content: center;
+  align-content: center;
+`
+}
+
+export function miniTitle() {
+  return styled('h1', getBasePropTypes())`
+    display: grid;
+    grid-column: 2/-1;
+    grid-row: 1/2;
+    justify-content: left;
+    align-content: center;
+    overflow: hidden;
+    font-size: ${(props) => {
+      let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
+      let adjustFont = `${4.2 + (0.0025*diff)}`
+      return `${adjustFont}vmin`
+    }}
+  `
+}
 export function createLogo(type) {
 
   return styled('img', getBasePropTypes())`
@@ -66,7 +91,7 @@ export function createTitle(type) {
   overflow: hidden;
   font-size: ${(props) => {
     let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
-    let adjustFont = `${3 + (0.0025*diff)}`
+    let adjustFont = `${2.6 + (0.0025*diff)}`
     return `${adjustFont}vmin`
   }}
 `

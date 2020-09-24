@@ -1,3 +1,4 @@
+#!/bin/bash
 BASEDIR=${pwd}
 git pull origin src
 cd web

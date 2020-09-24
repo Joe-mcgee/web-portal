@@ -65,8 +65,8 @@ export function createLogo(type) {
       }
       return '1/2'
     }};
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     border-radius: 50%;
   `
 
@@ -109,7 +109,8 @@ export function createContent(type) {
     let diff = props.nestData.isPortrait ? (props.nestData.height - props.nestData.width): props.nestData.width - props.nestData.height
     let adjustFont = `${2 + (0.0025*diff)}`
     return `${adjustFont}vmin`
-  }}
+  }};
+  word-wrap: break-word;
 `
 }
 

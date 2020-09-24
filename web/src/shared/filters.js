@@ -17,7 +17,7 @@ Vue.filter('truncate', function (text, position, suffix) {
   }
   if (typeof text === "undefined") text = ''
   if (text.length > length) {
-      return text.substring(0, length) + suffix;
+      return text.substring(0, length) + ' ' + suffix;
   } else {
       return text;
   }

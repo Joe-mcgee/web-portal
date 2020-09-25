@@ -83,6 +83,12 @@ export default {
   async created() {
     this.contacts = await ApiService.getContacts()
   },
+  methods: {
+    go(url) {
+      window.open(url, "_blank")
+    }
+
+  },
   computed: {
 
     contactsFilter() {

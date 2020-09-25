@@ -32,7 +32,6 @@
       :iterator="k">
       {{about.content | truncate(areas.indexOf('about'), '...')}}
     </content-a>
-    <!--<categories-a v-if="abouts" :about="abouts[0]"></categories-a> -->   
   </div>
 </template>
 <script>
@@ -67,6 +66,12 @@ export default {
   }),
   async created() {
     this.abouts = await ApiService.getAbouts()
+  },
+  methods: {
+    go(url) {
+      window.open(url, "_blank")
+    }
+
   },
   computed: {
     aboutsFilter() {

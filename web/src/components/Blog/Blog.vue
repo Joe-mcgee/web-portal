@@ -5,6 +5,8 @@
       v-bind:nestData=nestData
       >Blog</mini-title>
     <logo-a
+      
+      @click="go(blog.site)"
       :areas=areas
       v-for="(blog, i) in blogsFilter"
       :key="i + 'logo'"
@@ -14,6 +16,7 @@
     </logo-a>
 
     <title-a
+      @click="go(blog.site)"
       v-bind:nestData=nestData
       :areas=areas
       v-for="(blog, j) in blogsFilter"
@@ -24,6 +27,7 @@
     </title-a>
 
     <content-a
+      @click="go(blog.site)"
       v-bind:nestData=nestData
       :areas=areas
       v-for="(blog, k) in blogsFilter"
@@ -66,6 +70,12 @@ export default {
   }),
   async created() {
     this.blogs = await ApiService.getPosts()
+  },
+  methods: {
+    go(url) {
+      window.open(url, "_blank")
+    }
+
   },
   computed: {
     blogsFilter() {

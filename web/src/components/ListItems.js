@@ -46,23 +46,40 @@ export function miniTitle() {
     }}
   `
 }
+
+export function mapLogo(position, iterator, offset) {
+  let padding
+  let start
+  switch (position) {
+    case 0:
+      padding = 3
+      start = ((iterator + 1)*padding) + offset
+      return `${start}/${padding + start}`
+    case 1:
+      padding = 2 
+      start = ((iterator + 1)*padding) + offset + 1
+      return `${start}/${padding + start}`
+    case (position > 2):
+      padding = 1
+      start = ((iterator + 1)*padding) + offset + 1
+      return `${start}/${padding + start}`
+  }
+
+}
+
 export function createLogo(type) {
 
   return styled('img', getBasePropTypes())`
     grid-row: ${(props) => {
       let position = props.areas ? props.areas.indexOf(type) : 1
-      if (position <  2) {
-        return props.iterator ? `${(props.iterator+1)*2}/${2+(1+props.iterator)*2}` : '2/4'
-      }
-      return props.iterator ? `${(props.iterator+2)}/${(3+props.iterator)}` : '2/2'
+      let iterator = props.iterator ? props.iterator : 0
+      return mapLogo(position, iterator, -1)
     }};
     grid-column: ${(props) => {
       
       let position = props.areas ? props.areas.indexOf(type) : 1
-      
-      if (position <  2) {
-        return '1/3'
-      }
+      if (position == 0) return '1/4'
+      if (position == 1) return '1/3'
       return '1/2'
     }};
     width: 90%;
@@ -72,19 +89,40 @@ export function createLogo(type) {
 
 }
 
+export function mapTitle(position, iterator, offset) {
+  let padding
+  let start
+  console.log(position)
+  //  props.iterator ? `${2*(props.iterator+1)}` : '2'
+  switch (position) {
+    case 0:
+      padding = 3
+      start = ((padding*iterator)+1) + offset
+      return `${start}`
+    case 1:
+      padding = 2 
+      start = ((padding*iterator)+1) + offset
+      return `${start}`
+    case 2:
+      padding = 1
+      start = ((padding*iterator)+1) + offset
+      return `${start}`
+  }
+
+}
 export function createTitle(type) {
   return  styled('h2', getBasePropTypes())`  
   display: grid;
   grid-row: ${(props) => {
     let position = props.areas ? props.areas.indexOf(type) : 1
-    if (position < 2) {
-      return props.iterator ? `${2*(props.iterator+1)}` : '2'
-    }
-      return props.iterator ? `${2+(props.iterator+1)}/${1+(1+props.iterator)}` : '2'
+    let iterator = props.iterator ? props.iterator : 0
+    return mapTitle(position, iterator, 1)
   }};
   grid-column: ${(props) => {
     let position = props.areas ? props.areas.indexOf(type) : 1
-    if (position < 2) return '3/-1'; else return '2/-1'
+    if (position == 0) return '4/-1'
+    if (position == 1) return '3/-1'
+    return '2/-1'
   }
   };
   align-content: center;
@@ -97,12 +135,41 @@ export function createTitle(type) {
 `
 } 
 
+export function mapContent(position, iterator, offset) {
+  let padding
+  let start
+  console.log(position)
+  //  props.iterator ? `${2*(props.iterator+1)}` : '2'
+  switch (position) {
+    case 0:
+      padding = 3
+      start = ((padding*iterator)+1) + offset + 1
+      return `${start}`
+    case 1:
+      padding = 2 
+      start = ((padding*iterator)+1) + offset
+      return `${start}`
+    case 2:
+      padding = 1
+      start = ((padding*iterator)+1) + offset
+      return `${start}`
+  }
+}
+
 export function createContent(type) {
   return styled('p', getBasePropTypes())`
   grid-row: ${(props) => {
-    return props.iterator ? `${2*(props.iterator+1)+1}` : '3'
+    let position = props.areas ? props.areas.indexOf(type) : 1
+    let iterator = props.iterator ? props.iterator : 0
+    return mapContent(position, iterator, 2)
   }};
-  grid-column: 3/-1;
+  grid-column: ${(props) => {
+    let position = props.areas ? props.areas.indexOf(type) : 1
+    if (position == 0) return '4/-1'
+    if (position == 1) return '3/-1'
+    return '2/-1'
+  }
+  };
   align-content: center;
   display: grid;
   font-size: ${(props) => {
@@ -110,13 +177,51 @@ export function createContent(type) {
     let adjustFont = `${2 + (0.0025*diff)}`
     return `${adjustFont}vmin`
   }};
-  word-wrap: break-word;
+  word-break: break-all;
+  `
+}
+
+export function mapCategories(position, iterator, offset) {
+  let padding
+  let start
+  console.log(position)
+  //  props.iterator ? `${2*(props.iterator+1)}` : '2'
+  switch (position) {
+    case 0:
+      padding = 3
+      start = ((padding*iterator)+1) + offset + 1
+      return `${start}`
+    case 1:
+      padding = 2 
+      start = ((padding*iterator)+1) + offset
+      return `${start}`
+    case 2:
+      padding = 1
+      start = ((padding*iterator)+1) + offset
+      return `${start}`
+  }
+}
+export function createCategories(type) {
+  return styled('h2', getBasePropTypes())`
+  grid-row: ${(props) => {
+    let position = props.areas ? props.areas.indexOf(type) : 1
+    let iterator = props.iterator ? props.iterator : 0
+    return mapCategories(position, iterator, 1)
+  }};
+  grid-column: ${(props) => {
+    let position = props.areas ? props.areas.indexOf(type) : 1
+    if (position == 0) return '4/-1'
+    if (position == 1) return '3/-1'
+    return '2/-1'
+  }}
+  font-size: ${(props) => {
+    let diff = props.nestData.isPortrait ? (props.nestData.height - props.nestData.width): props.nestData.width - props.nestData.height
+    let adjustFont = `${1.62 + (0.0025*diff)}`
+    return `${adjustFont}vmin`
+  }};
 `
 }
 
-export function createCategories(type) {
-  return styled('h2', getBasePropTypes())`
-  grid-row: -4/-2;
-  grid-column: -1/-2;
-`
+export function createCategory(type) {
+  return styled('div', getBasePropTypes())``
 }

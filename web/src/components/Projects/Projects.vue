@@ -5,15 +5,16 @@
       v-bind:nestData=nestData
       >Projects</mini-title>
     <logo-a
+      @click="go(project.site)"
       :areas=areas
       v-for="(project, i) in projectsFilter"
       :key="i + 'logo'"
       :iterator="i"
       :src="project.logo.url">
-      {{project.site}}
     </logo-a>
 
     <title-a
+      @click="go(project.site)"
       v-bind:nestData=nestData
       :areas=areas
       v-for="(project, j) in projectsFilter"
@@ -23,7 +24,22 @@
       {{project.title | truncate(areas.indexOf('projects'), '...')}}
     </title-a>
 
+    <categories-a
+      v-bind:nestData=nestData
+      :areas=areas
+      v-for="(project, k) in projectsFilter"
+      :key="k + 'categories'"
+      :iterator="k"
+      :href="project.site">
+      <category
+        v-for="(category,l) in project.categories"
+        :key="l +'category'"
+        >
+      {{category.title | truncate(areas.indexOf('projects'), '...')}}
+      </category>
+    </categories-a>
     <content-a
+      @click="go(project.site)"
       v-bind:nestData=nestData
       :areas=areas
       v-for="(project, k) in projectsFilter"
@@ -46,7 +62,7 @@ const LogoA = ListItems.createLogo('projects')
 const TitleA = ListItems.createTitle('projects')
 const ContentA = ListItems.createContent('projects')
 const CategoriesA = ListItems.createCategories('projects')
-
+const Category = ListItems.createCategory('projects')
 export default {
   name: 'Projects',
   props: {
@@ -59,13 +75,20 @@ export default {
     LogoA,
     TitleA,
     ContentA,
-    CategoriesA
+    CategoriesA,
+    Category
   },
   data: () => ({
     projects: Array,
   }),
   async created() {
     this.projects = await ProjectService.getProjects()
+  },
+  methods: {
+    go(url) {
+      window.open(url, "_blank")
+    }
+
   },
   computed: {
     projectsFilter() {
@@ -76,30 +99,34 @@ export default {
           case 0:
             return this.projects
           case 1:
-            return this.projects.filter((project, i) => {
-                return i < 2
-
-            })
+            deepCopy = JSON.parse(JSON.stringify(this.projects))
+            return deepCopy.map((project) => {
+              delete project.categories
+              return project
+            }).slice(0,2)
           case 2:
             deepCopy = JSON.parse(JSON.stringify(this.projects))
             return deepCopy.map((project) => {
               delete project.content
+              delete project.categories
 
               return project
             })
           case 3:
             deepCopy = JSON.parse(JSON.stringify(this.projects))
-            return deepCopy.map((projects) => {
-              delete projects.content
-              delete projects.title
-              return projects
+            return deepCopy.map((project) => {
+              delete project.content
+              delete project.categories
+              delete project.title
+              return project
             })
           case 4:
             deepCopy = JSON.parse(JSON.stringify(this.projects))
-            return deepCopy.map((projects) => {
-              delete projects.content
-              delete projects.title
-              return projects
+            return deepCopy.map((project) => {
+              delete project.content
+              delete project.title
+              delete project.categories
+              return project
             })
         }
         return []

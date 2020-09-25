@@ -92,7 +92,6 @@ export function createLogo(type) {
 export function mapTitle(position, iterator, offset) {
   let padding
   let start
-  console.log(position)
   //  props.iterator ? `${2*(props.iterator+1)}` : '2'
   switch (position) {
     case 0:
@@ -138,7 +137,6 @@ export function createTitle(type) {
 export function mapContent(position, iterator, offset) {
   let padding
   let start
-  console.log(position)
   //  props.iterator ? `${2*(props.iterator+1)}` : '2'
   switch (position) {
     case 0:
@@ -184,7 +182,6 @@ export function createContent(type) {
 export function mapCategories(position, iterator, offset) {
   let padding
   let start
-  console.log(position)
   //  props.iterator ? `${2*(props.iterator+1)}` : '2'
   switch (position) {
     case 0:

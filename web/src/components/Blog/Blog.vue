@@ -27,7 +27,6 @@
     </title-a>
 
     <content-a
-      @click="go(blog.site)"
       v-bind:nestData=nestData
       :areas=areas
       v-for="(blog, k) in blogsFilter"

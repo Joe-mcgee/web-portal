@@ -12,7 +12,7 @@
       <hover-effect v-bind:nestData=nestData
         :mouseX="mouseX" :mouseY="mouseY"></hover-effect>
       <foot></foot>
-    </open-base>
+    </open-base>    
 </template>
 
 <script>

@@ -5,6 +5,7 @@
       v-bind:nestData=nestData
       >Contact</mini-title>
     <logo-a
+      @click="go(contact.site)"
       :areas=areas
       v-for="(contact, i) in contactsFilter"
       :key="i + 'logo'"
@@ -14,6 +15,7 @@
     </logo-a>
 
     <title-a
+      @click="go(contact.site)"
       v-bind:nestData=nestData
       :areas=areas
       v-for="(contact, j) in contactsFilter"

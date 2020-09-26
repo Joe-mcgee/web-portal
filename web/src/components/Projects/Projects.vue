@@ -39,7 +39,6 @@
       </category>
     </categories-a>
     <content-a
-      @click="go(project.site)"
       v-bind:nestData=nestData
       :areas=areas
       v-for="(project, k) in projectsFilter"

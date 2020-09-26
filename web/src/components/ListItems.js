@@ -172,7 +172,7 @@ export function createContent(type) {
   display: grid;
   font-size: ${(props) => {
     let diff = props.nestData.isPortrait ? (props.nestData.height - props.nestData.width): props.nestData.width - props.nestData.height
-    let adjustFont = `${2 + (0.0025*diff)}`
+    let adjustFont = `${1.8 + (0.0025*diff)}`
     return `${adjustFont}vmin`
   }};
   word-break: break-all;

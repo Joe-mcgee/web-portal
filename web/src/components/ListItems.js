@@ -1,11 +1,11 @@
 import styled from 'vue-styled-components'
-
 function getBasePropTypes() {
   return {
     nestData: {
       width: Number,
       height: Number,
-      isPortrait: Boolean
+      isPortrait: Boolean,
+      squareEdge: Number,
     },
     areas: Array,
     iterator: Number,
@@ -68,7 +68,6 @@ export function mapLogo(position, iterator, offset) {
 }
 
 export function createLogo(type) {
-
   return styled('img', getBasePropTypes())`
     grid-row: ${(props) => {
       let position = props.areas ? props.areas.indexOf(type) : 1
@@ -86,7 +85,6 @@ export function createLogo(type) {
     height: 90%;
     border-radius: 50%;
   `
-
 }
 
 export function mapTitle(position, iterator, offset) {
@@ -199,7 +197,7 @@ export function mapCategories(position, iterator, offset) {
   }
 }
 export function createCategories(type) {
-  return styled('h2', getBasePropTypes())`
+  return styled('div', getBasePropTypes())`
   grid-row: ${(props) => {
     let position = props.areas ? props.areas.indexOf(type) : 1
     let iterator = props.iterator ? props.iterator : 0
@@ -214,11 +212,25 @@ export function createCategories(type) {
   font-size: ${(props) => {
     let diff = props.nestData.isPortrait ? (props.nestData.height - props.nestData.width): props.nestData.width - props.nestData.height
     let adjustFont = `${1.62 + (0.0025*diff)}`
-    return `${adjustFont}vmin`
+    return `${adjustFont}vmin;
+  display: grid;
+  grid-template-columns: ${(props) => {
+    let squareEdge = props.nestData.squareEdge ? props.nestData.squareEdge : 10;
+    return `repeat(8, ${squareEdge}px)`
+  }};
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-content: center;
+    `
   }};
 `
 }
 
-export function createCategory(type) {
-  return styled('div', getBasePropTypes())``
+export function createCategory(div, type) {
+  return styled(div, getBasePropTypes())`
+    grid-row: 1;
+    justify-content: center;
+    align-content: center;
+
+  `
 }

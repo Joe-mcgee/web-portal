@@ -26,6 +26,20 @@
       {{blog.title}}
     </title-a>
 
+    <categories-a
+      v-bind:nestData=nestData
+      :areas=areas
+      v-for="(blog, k) in blogsFilter"
+      :key="k + 'categories'"
+      :iterator="k">
+      <category
+        v-for="(category,l) in blog.categories"
+        :key="l +'category'"
+        :title="category.title"
+        :count="category.count"
+        >
+      </category>
+    </categories-a>
     <content-a
       v-bind:nestData=nestData
       :areas=areas
@@ -43,13 +57,16 @@ import * as ListItems from '@/components/ListItems.js'
 import * as ApiService from '@/shared/ApiService.js'
 import styled from 'vue-styled-components'
 
+
+import CategoryChit from '@/components/CategoryChit.vue'
+
 let MiniTitle = ListItems.miniTitle()
 let TypewriterGrid = ListItems.iconCenter(Typewriter)
 const LogoA = ListItems.createLogo('blog')
 const TitleA = ListItems.createTitle('blog')
 const ContentA = ListItems.createContent('blog')
 const CategoriesA = ListItems.createCategories('blog')
-
+const Category = ListItems.createCategory(CategoryChit, 'blog')
 export default {
   title: 'Blog',
   props: {
@@ -62,7 +79,8 @@ export default {
     LogoA,
     TitleA,
     ContentA,
-    CategoriesA
+    CategoriesA,
+    Category,
   },
   data: () => ({
     blogs: Array
@@ -85,30 +103,34 @@ export default {
           case 0:
             return this.blogs
           case 1:
-            return this.blogs.filter((blog, i) => {
-                return i < 2
-
-            })
+            deepCopy = JSON.parse(JSON.stringify(this.blogs))
+            return deepCopy.map((blog) => {
+              delete blog.categories
+              return blog
+            }).slice(0,2)
           case 2:
             deepCopy = JSON.parse(JSON.stringify(this.blogs))
             return deepCopy.map((blog) => {
               delete blog.content
+              delete blog.categories
 
               return blog
             })
           case 3:
             deepCopy = JSON.parse(JSON.stringify(this.blogs))
-            return deepCopy.map((blogs) => {
-              delete blogs.content
-              delete blogs.title
-              return blogs
+            return deepCopy.map((blog) => {
+              delete blog.content
+              delete blog.categories
+              delete blog.title
+              return blog
             })
           case 4:
             deepCopy = JSON.parse(JSON.stringify(this.blogs))
-            return deepCopy.map((blogs) => {
-              delete blogs.content
-              delete blogs.title
-              return blogs
+            return deepCopy.map((blog) => {
+              delete blog.content
+              delete blog.categories
+              delete blog.title
+              return blog
             })
         }
         return []

@@ -29,13 +29,13 @@
       :areas=areas
       v-for="(project, k) in projectsFilter"
       :key="k + 'categories'"
-      :iterator="k"
-      :href="project.site">
+      :iterator="k">
       <category
         v-for="(category,l) in project.categories"
         :key="l +'category'"
+        :title="category.title"
+        :count="category.count"
         >
-      {{category.title | truncate(areas.indexOf('projects'), '...')}}
       </category>
     </categories-a>
     <content-a
@@ -46,14 +46,15 @@
       :iterator="k">
       {{project.content | truncate(areas.indexOf('projects'), '...')}}
     </content-a>
-    <!--<categories-a v-if="projects" :project="projects[0]"></categories-a> -->   
   </div>
 </template>
 <script>
 import styled from 'vue-styled-components'
-import * as ProjectService from '@/shared/ProjectService.js'
 import Flask from 'vue-material-design-icons/Flask.vue'
+import * as ApiService from '@/shared/ApiService.js'
+
 import * as ListItems from '@/components/ListItems.js'
+import CategoryChit from '@/components/CategoryChit.vue'
 
 const FlaskGrid = ListItems.iconCenter(Flask)
 const MiniTitle = ListItems.miniTitle()
@@ -61,7 +62,7 @@ const LogoA = ListItems.createLogo('projects')
 const TitleA = ListItems.createTitle('projects')
 const ContentA = ListItems.createContent('projects')
 const CategoriesA = ListItems.createCategories('projects')
-const Category = ListItems.createCategory('projects')
+const Category = ListItems.createCategory(CategoryChit, 'projects')
 export default {
   name: 'Projects',
   props: {
@@ -81,7 +82,7 @@ export default {
     projects: Array,
   }),
   async created() {
-    this.projects = await ProjectService.getProjects()
+    this.projects = await ApiService.getProjects()
   },
   methods: {
     go(url) {

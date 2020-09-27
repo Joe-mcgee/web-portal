@@ -5,7 +5,6 @@
       v-bind:nestData=nestData
       >Projects</mini-title>
     <logo-a
-      @click="go(project.site)"
       :areas=areas
       v-for="(project, i) in projectsFilter"
       :key="i + 'logo'"
@@ -14,7 +13,6 @@
     </logo-a>
 
     <title-a
-      @click="go(project.site)"
       v-bind:nestData=nestData
       :areas=areas
       v-for="(project, j) in projectsFilter"
@@ -28,7 +26,9 @@
       v-for="(project, k) in projectsFilter"
       :key="k +'link'"
       :iterator=k
-      :areas=areas>
+      :areas=areas
+      :external="project.site"
+      :github="project.github">
     </links-a>
     <categories-a
       v-bind:nestData=nestData

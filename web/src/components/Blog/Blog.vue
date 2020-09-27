@@ -26,20 +26,6 @@
       {{blog.title}}
     </title-a>
 
-    <categories-a
-      v-bind:nestData=nestData
-      :areas=areas
-      v-for="(blog, k) in blogsFilter"
-      :key="k + 'categories'"
-      :iterator="k">
-      <category
-        v-for="(category,l) in blog.categories"
-        :key="l +'category'"
-        :title="category.title"
-        :count="category.count"
-        >
-      </category>
-    </categories-a>
     <content-a
       v-bind:nestData=nestData
       :areas=areas

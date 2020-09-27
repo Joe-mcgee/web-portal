@@ -1,7 +1,7 @@
 <template>
   <Wrapper>
-      <external/>
-      <git/>
+      <external @click="go(external)"/>
+      <git @click="go(github)"/>
   </Wrapper>
 </template>
 <script>
@@ -17,9 +17,6 @@ let Wrapper = styled('div', getBasePropTypes())`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  background-color: ${(props) => {
-    return props.mouseOver ? "#ffc400": '#003BFF'
-  }};
   border-radius: %5;
   overflow: hidden;
   justify-content: center;
@@ -45,8 +42,8 @@ let Git = styled(Github, getBasePropTypes())`
 
 export default {
   props: {
-    count: Number,
-    logo: String,
+    external: String,
+    github: String,
     nestData: Object,
   },
   components: {
@@ -57,6 +54,9 @@ export default {
   data: () => ({hover: false}),
   async created() {},
   methods: {
+    go(url) {
+      window.open(url, "_blank")
+    }
   },
 
 }

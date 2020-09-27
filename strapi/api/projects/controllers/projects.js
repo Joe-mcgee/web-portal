@@ -14,7 +14,7 @@ module.exports = {
     entities = entities.map(entity => sanitizeEntity(entity, { model: strapi.models.projects }));
     for (const [i, entity] of entities.entries()) {
       for (const [j, category] of entity.categories.entries()) {
-        category.count = await strapi.services.categories.count({id: category.id})
+        category.count = await strapi.services.projects.count({categories: category.id})
       }
     }
     return entities

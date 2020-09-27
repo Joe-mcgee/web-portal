@@ -23,7 +23,13 @@
       :href="project.site">
       {{project.title | truncate(areas.indexOf('projects'), '...')}}
     </title-a>
-
+    <links-a
+      v-bind:nestData=nestData
+      v-for="(project, k) in projectsFilter"
+      :key="k +'link'"
+      :iterator=k
+      :areas=areas>
+    </links-a>
     <categories-a
       v-bind:nestData=nestData
       :areas=areas
@@ -31,9 +37,10 @@
       :key="k + 'categories'"
       :iterator="k">
       <category
+        v-bind:nestData=nestData
         v-for="(category,l) in project.categories"
         :key="l +'category'"
-        :title="category.title"
+        :logo="category.logo.url"
         :count="category.count"
         >
       </category>
@@ -55,6 +62,7 @@ import * as ApiService from '@/shared/ApiService.js'
 
 import * as ListItems from '@/components/ListItems.js'
 import CategoryChit from '@/components/CategoryChit.vue'
+import LinkChit from '@/components/LinkChit.vue'
 
 const FlaskGrid = ListItems.iconCenter(Flask)
 const MiniTitle = ListItems.miniTitle()
@@ -63,6 +71,7 @@ const TitleA = ListItems.createTitle('projects')
 const ContentA = ListItems.createContent('projects')
 const CategoriesA = ListItems.createCategories('projects')
 const Category = ListItems.createCategory(CategoryChit, 'projects')
+const LinksA = ListItems.createLinks(LinkChit, 'projects')
 export default {
   name: 'Projects',
   props: {
@@ -76,6 +85,7 @@ export default {
     TitleA,
     ContentA,
     CategoriesA,
+    LinksA,
     Category
   },
   data: () => ({

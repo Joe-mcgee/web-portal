@@ -31,6 +31,12 @@ export function iconCenter(div) {
 `
 }
 
+function computeFont(init, scale, props) { 
+      let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
+      let adjustFont = `${init + (scale*diff)}`
+      return `${adjustFont}vmin`
+}
+
 export function miniTitle() {
   return styled('h1', getBasePropTypes())`
     display: grid;
@@ -40,9 +46,7 @@ export function miniTitle() {
     align-content: center;
     overflow: hidden;
     font-size: ${(props) => {
-      let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
-      let adjustFont = `${4.2 + (0.0025*diff)}`
-      return `${adjustFont}vmin`
+      return computeFont(4.2, 0.0025, props ? props: {})
     }}
   `
 }
@@ -125,13 +129,16 @@ export function createTitle(type) {
   align-content: center;
   overflow: hidden;
   font-size: ${(props) => {
-    let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
-    let adjustFont = `${2.6 + (0.0025*diff)}`
-    return `${adjustFont}vmin`
+    return computeFont(2.6, 0.0025, props ? props: {})
   }}
 `
 } 
+function test (init, scale, props) {
 
+    let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
+    let adjustFont = `${2.6 + (0.0025*diff)}`
+    return `${adjustFont}vmin`
+}
 export function mapContent(position, iterator, offset) {
   let padding
   let start
@@ -205,32 +212,71 @@ export function createCategories(type) {
   }};
   grid-column: ${(props) => {
     let position = props.areas ? props.areas.indexOf(type) : 1
-    if (position == 0) return '4/-1'
+    if (position == 0) return '6/-1'
     if (position == 1) return '3/-1'
     return '2/-1'
-  }}
-  font-size: ${(props) => {
-    let diff = props.nestData.isPortrait ? (props.nestData.height - props.nestData.width): props.nestData.width - props.nestData.height
-    let adjustFont = `${1.62 + (0.0025*diff)}`
-    return `${adjustFont}vmin;
+  }};
+  gap: 0.382rem 0.618rem;
   display: grid;
-  grid-template-columns: ${(props) => {
-    let squareEdge = props.nestData.squareEdge ? props.nestData.squareEdge : 10;
-    return `repeat(8, ${squareEdge}px)`
+  font-size: ${(props) => {
+    return computeFont(1.62, 0.0025, props ? props: {})
   }};
-  grid-template-rows: 1fr;
-  justify-content: center;
-  align-content: center;
-    `
-  }};
-`
+  grid-template-columns: repeat(5, 1fr);
+  `
 }
 
+export function createLinks(div, type) {
+  return styled(div, getBasePropTypes())`
+  grid-row: ${(props) => {
+    let position = props.areas ? props.areas.indexOf(type) : 1
+    let iterator = props.iterator ? props.iterator : 0
+    return mapCategories(position, iterator, 1)
+  }};
+  grid-column: ${(props) => {
+    let position = props.areas ? props.areas.indexOf(type) : 1
+    if (position == 0) return '4/6'
+    if (position == 1) return '0'
+    return '2/-1'
+  }};
+  gap: 0.382rem 0.618rem;
+  display: grid;
+  font-size: ${(props) => {
+    return computeFont(1.62, 0.0025, props ? props: {})
+  }};
+  grid-template-columns: repeat(2, 1fr);
+  `
+}
 export function createCategory(div, type) {
   return styled(div, getBasePropTypes())`
-    grid-row: 1;
-    justify-content: center;
-    align-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    align-items: center;
+    border-radius: 4px;
+    transition: all 500ms;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
   `
+}
+
+
+
+export function createCount() {
+return styled('p', getBasePropTypes())`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1/1;
+  grid-row: 1/1;
+  height: 100%;
+  width: 100%;
+  background-color: #001B74;
+  font-size: ${(props) => {
+    return computeFont(2.2, 0.0025, props ? props: {})
+  }};
+  
+`
+
 }

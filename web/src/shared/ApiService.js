@@ -9,6 +9,10 @@ export async function getProjects() {
   const response = await axios.get(`${getUrl()}/projects`)
   response.data = response.data.map((project) => {
     project.logo.url = `${getUrl()}${project.logo.url}`
+    project.categories.map((category) => {
+      category.logo.url = `${getUrl()}${category.logo.url}`
+      return category
+    })
     return project
 
   })

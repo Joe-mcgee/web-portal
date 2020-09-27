@@ -236,6 +236,7 @@ export function createLinks(div, type) {
     let position = props.areas ? props.areas.indexOf(type) : 1
     if (position == 0) return '4/6'
     if (position == 1) return '0'
+    if (position == 2) return '9'
     return '2/-1'
   }};
   gap: 0.382rem 0.618rem;

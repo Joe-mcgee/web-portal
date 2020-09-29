@@ -1,10 +1,11 @@
 <template>
   <grid
-    v-bind:nestData=this.nestData
+    v-bind:nestData=getNestData
   id="app">
   <banner-img/>
   <recent
-    v-bind:nestData=this.nestData
+    v-bind:nestData=getNestData
+    :recent=recent
   >
   </recent>
   </grid>
@@ -13,9 +14,9 @@
 import { createGrid } from '@/plugins/IGoldenGrid.js'
 import styled from 'vue-styled-components';
 import * as ApiService from '@/shared/ApiService.js'
-import List from '@/components/List.vue'
+//import List from '@/components/List.vue'
 
-const Recent = createGrid('div', {
+/*const Recent = createGrid(List, {
   origin: {
     x: 10,
     y: 1
@@ -25,6 +26,7 @@ const Recent = createGrid('div', {
     y: 8
   }
 })
+*/
 const Grid = createGrid('div')
 const BannerImg = styled('div')`
   background: url(${require('@/assets/banner.jpeg')});
@@ -41,7 +43,8 @@ export default {
   name: 'App',
   components: {
     Grid,
-    BannerImg
+    BannerImg,
+  //  Recent,
   },
   data: () => ({
     recent: Array
@@ -62,6 +65,7 @@ export default {
   padding: 0;
 }
 #app {
+  background-color: ##E2D6C8;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

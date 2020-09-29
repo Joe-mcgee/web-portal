@@ -35,12 +35,7 @@
 
 <script>
 import * as ListItems from '@/components/ListItems.js'
-import * as ApiService from '@/shared/ApiService.js'
-import styled from 'vue-styled-components'
-
-
 //import CategoryChit from '@/components/CategoryChit.vue'
-
 let MiniTitle = ListItems.miniTitle()
 //const LogoA = ListItems.createLogo('blog')
 //const TitleA = ListItems.createTitle('blog')
@@ -53,12 +48,13 @@ export default {
     posts: Array
   },
   components: {
-    LogoA,
-    TitleA,
-    ContentA,
-    CategoriesA,
-    Category
-  }
+    MiniTitle,
+//    LogoA,
+//    TitleA,
+//    ContentA,
+//    CategoriesA,
+//    Category
+  },
   data: () => ({}),
   
 

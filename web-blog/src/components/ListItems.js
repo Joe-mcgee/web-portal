@@ -134,12 +134,13 @@ export function createTitle(type) {
   }}
 `
 } 
+  /*
 function test (init, scale, props) {
-
     let diff = props.nestData.isPortrait ? props.nestData.height - props.nestData.width: props.nestData.width - props.nestData.height
     let adjustFont = `${2.6 + (0.0025*diff)}`
     return `${adjustFont}vmin`
 }
+*/
 export function mapContent(position, iterator, offset) {
   let padding
   let start
@@ -249,6 +250,7 @@ export function createLinks(div, type) {
   `
 }
 export function createCategory(div, type) {
+  console.log(type)
   return styled(div, getBasePropTypes())`
     display: flex;
     flex-direction: row;

@@ -1,28 +1,20 @@
 import styled from 'vue-styled-components'
 
-export class GGData {
+export class NestData {
   
   constructor(options) {
     this.setGridData(options)
   }
 
   setGridData(options) {
-    this.width = window.innerWidth
-
-    this.height = window.innerHeight
-    this.isPortrait = (window.innerHeight > window.innerWidth) ? true: false,
-    this.squareEdge =  window.innerWidth / (this.isPortrait ? options.fibShort : options.fibLong)
-    
-    this.options = options ? options : {fibShort: 13, fibLong: 21}
-    
-    return {
-      $gridData: {
-        width: this.width,
-        height: this.height,
-        squareEdge: this.squareEdge,
-        options: this.options
-      }
-    } 
+    let nestData = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+      isPortrait: (window.innerHeight > window.innerWidth) ? true: false,
+      squareEdge: window.innerWidth / (this.isPortrait ? options.fibShort : options.fibLong),
+    options: options ? options : {fibShort: 13, fibLong: 21}
+    }
+    return nestData 
   }
 }
     
@@ -49,8 +41,6 @@ export function createGrid(tag, options) {
     width: 100%;
     height: 100%;
     grid-template-rows: repeat(${(props) => {
-      console.log(props)
-      console.log(props.nestData.nestData)
       return props.nestData.isPortrait ? 2*props.nestData.options.fibLong: 2*props.nestData.options.fibShort
     }}, ${(props) => {
       return props.nestData.squareEdge ? props.nestData.squareEdge : '10'

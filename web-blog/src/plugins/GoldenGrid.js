@@ -7,10 +7,7 @@ const GoldenGrid = {
 
     Vue.mixin({
       data: function () {
-        let response = {
-          nestData: $GGData.setGridData(options)
-        }
-        return response
+        return $GGData.setGridData(options)
       },
       mounted() {
         console.log('mounted')
@@ -18,14 +15,18 @@ const GoldenGrid = {
       created() {
         window.addEventListener("resize", () => {
           let newFrame = $GGData.setGridData(options)
-          Object.assign(this.$data.nestData, newFrame)    
+          Object.assign(this.$data, newFrame)    
         })
       },
       destroyed()  {
         window.removeEventListener("resize", () => {})
       },
       computed: {
-        
+        getNestData() {
+          return {
+            ...this.$data.$gridData
+          }
+        }        
       }
     })
   }

@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-//import * as BaseGrid from '../components/BaseGrid.js'
+import Blog from '../views/Blog.vue'
+
 Vue.use(VueRouter)
 
 

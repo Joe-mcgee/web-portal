@@ -5,6 +5,8 @@ tmux new-session -s $SESSIONNAME \; \
 	send-keys 'nvim ${DIR}' C-m \; \
 	split-window -v \; \
 	split-window -v \; \
-	send-keys "cd web && npm run serve" C-m \; \
+	send-keys "cd web-portal && npm run serve" C-m \; \
 	split-window -h \; \
 	send-keys "cd strapi && strapi develop" C-m \; \
+	split-window -h \; \
+	send-keys "cd web-blog && npm run serve" C-m \; \

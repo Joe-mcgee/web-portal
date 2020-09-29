@@ -1,0 +1,72 @@
+<template>
+  <grid
+    v-bind:nestData=this.nestData
+  id="app">
+  <banner-img/>
+  <recent
+    v-bind:nestData=this.nestData
+  >
+  </recent>
+  </grid>
+</template>
+<script>
+import { createGrid } from '@/plugins/IGoldenGrid.js'
+import styled from 'vue-styled-components';
+import * as ApiService from '@/shared/ApiService.js'
+import List from '@/components/List.vue'
+
+const Recent = createGrid('div', {
+  origin: {
+    x: 10,
+    y: 1
+  },
+  dimension: {
+    x: 10,
+    y: 8
+  }
+})
+const Grid = createGrid('div')
+const BannerImg = styled('div')`
+  background: url(${require('@/assets/banner.jpeg')});
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  grid-row: 1/9;
+  grid-column: 1/-1;
+  border-bottom: 3px solid black;
+`
+
+
+export default {
+  name: 'App',
+  components: {
+    Grid,
+    BannerImg
+  },
+  data: () => ({
+    recent: Array
+  }),
+  async created() {
+    console.log(this)
+    this.recent = await ApiService.getPosts()
+    console.log(this.recent)
+  }
+  
+  
+}
+</script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin: 0 auto;
+}
+</style>

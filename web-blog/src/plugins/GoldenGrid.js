@@ -1,8 +1,6 @@
 import { GGData } from './IGoldenGrid.js'
 const GoldenGrid = {
   install(Vue, options) {
-    options.fibShort = options.fibShort ? options.fibShort : '13'
-    options.fibLong = options.fibLong ? options.fibLong : '21'
     let $GGData = new GGData(options)
 
     Vue.mixin({

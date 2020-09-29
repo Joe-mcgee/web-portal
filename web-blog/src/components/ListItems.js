@@ -1,26 +1,5 @@
-
 import styled from 'vue-styled-components'
-function getBasePropTypes() {
-  return {
-    nestData: {
-      width: Number,
-      height: Number,
-      isPortrait: Boolean,
-      squareEdge: Number,
-    },
-    areas: Array,
-    iterator: Number,
-    categories: Array,
-    content: String,
-    github: String,
-    logo: {
-      url: String
-    },
-    site: String,
-    name: String
-
-  }
-}  
+import { getBasePropTypes } from '@/plugins/IGoldenGrid.js'
 
 export function iconCenter(div) {
   return styled(div)`
@@ -40,10 +19,7 @@ function computeFont(init, scale, props) {
 
 export function miniTitle() {
   return styled('h1', getBasePropTypes())`
-    display: grid;
-    grid-column: 2/-1;
-    grid-row: 1/2;
-    justify-content: left;
+    justify-content: center;
     align-content: center;
     overflow: hidden;
     font-size: ${(props) => {

@@ -111,28 +111,29 @@
                 >
                   <div class="d-flex flex-no-wrap justify-space-between">
                     <v-row>
-                      <v-col cols="9">
-                        <v-row>
+                      <v-col>
+                        <v-row class="pt-0">
                           <v-card-title
-                            class="headline"
+
+                            class="headline pr-0 pb-0"
                             v-text="item.title"
                           ></v-card-title>
                           <!-- title -->
                         </v-row>
                         <v-row>
                           <!-- stuff -->
-                          <v-col class="pt-0">
-                            <v-card-subtitle class="pt-0" v-text="item.created_at"></v-card-subtitle>
+                          <v-col class="py-0">
+                            <v-card-subtitle class="py-0 pl-1" v-text="item.created_at"></v-card-subtitle>
                           </v-col>
                         </v-row>
                         <v-row>
                           <!-- tags -->
                           <v-col
+                            class="pt-1 pb-0 pr-0"
                             v-for="(category, j) in item.categories"
                             :key="j"
                           >
                             <v-chip
-                              class="ma-2 "
                               color="#FFC400"
                             >
                               <v-avatar
@@ -148,20 +149,25 @@
                           </v-col>
                         </v-row> 
                       </v-col>                
-                      <v-col>
-                        <v-avatar
-                          class="ma-3"
-                          tile
+                      <v-col
                         >
-                          <v-img :src="item.logo.url"></v-img>
-                        </v-avatar>
+                        <v-row
+                          class="fill-height ma-0"
+                          align="center"
+                          justify="center"
+                          >
+                          <v-img
+                            contain
+                            max-width="20vh"
+                            :src="item.logo.url"></v-img>
+                        </v-row>
                       </v-col>                
                     </v-row>
 
                   </div>
                     <v-row>
                       <v-card-text class="pt-0">
-                        {{item.content | truncate(100, '...')}}
+                        {{item.content | truncate(300, '...')}}
                       </v-card-text>
                     </v-row>
                 </v-card>

@@ -1,7 +1,10 @@
 <template>
-  <div>
-    {{post}}
-  </div>
+  <v-sheet
+    min-height="70vh"
+    rounded="lg"
+    >
+    
+  </v-sheet>
 </template>
 <script>
 import * as ApiService from '@/shared/ApiService.js'

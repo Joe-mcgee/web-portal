@@ -9,37 +9,38 @@
       cols="12"
     >
       <v-card
+
+      class="pl-3 pt-3"
       >
         <div class="d-flex flex-no-wrap justify-space-between">
-          <v-row>
+          <v-row class="pt-0 pl-0">
             <v-col class="pt-0">
               <v-row class="pt-0">
                 <v-card-title
-
                   @click="go('posts', item.id)"
-                  class="headline pr-0 pb-0 pt-0"
+                  class="headline  py-0"
                   v-text="item.title"
                 ></v-card-title>
                 <!-- title -->
               </v-row>
               <v-row>
                 <!-- stuff -->
-                <v-col class="py-0">
-                  <v-card-subtitle class="py-0 pl-1" v-text="item.created_at"></v-card-subtitle>
-                </v-col>
+                  <v-card-subtitle class="py-0" v-text="item.created_at"></v-card-subtitle>
               </v-row>
               <v-row
+                class="pl-3"
                 >
                 <!-- tags -->
                 <v-col
-                  class="pt-1 pb-0 pr-0"
+                  class="pt-1 pb-0 px-0"
                   justify="center"
-                  align="center"
+                  align="left"
                   v-for="(category, j) in item.categories"
                   :key="j"
                 >
                   <v-chip
                     color="#FFC400"
+                    style="border: 1px solid black"
                   >
                     <v-avatar
                       left
@@ -63,8 +64,7 @@
                 justify="center"
                 >
                 <v-img
-                  contain
-                  max-width="20vh"
+                  max-width="20vmin"
                   :src="item.logo.url"></v-img>
               </v-row>
             </v-col>                

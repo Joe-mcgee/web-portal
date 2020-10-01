@@ -18,7 +18,7 @@
         <p class="color-text"><i>Blog</i> => Dev | DLT | Polymathy</p>
 
       <v-spacer></v-spacer>
-
+<!--
       <v-responsive max-width="260">
         
         <v-text-field
@@ -29,7 +29,7 @@
           solo
           prepend-inner-icon="mdi-magnify"
         ></v-text-field>
-      </v-responsive>
+      </v-responsive> -->
     </v-container>
   </v-app-bar>
 </template>

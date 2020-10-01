@@ -3,7 +3,7 @@
     min-height="70vh"
     rounded="lg"
   >
-  <Title text="Home" />
+  <Title text="Home" subtext="Recent" />
     <PostList :posts="recent" />
     <!--  -->
   </v-sheet>

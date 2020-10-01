@@ -1,20 +1,20 @@
 <template>
-  <v-col>
+  <div>
   <v-row
-    class="fill-height pt-3 color-text headline"
+    class="fill-height pt-3 color-text title"
     justify="center"
     align="center">
   <h1 class="text-title">{{text}}</h1> 
   </v-row>
   <v-row
-
-    class="fill-height title pt-3"
+    v-if="subtext"
+    class="fill-height sub-title pt-3"
     justify="center"
     align="center"
     >
     {{subtext}}
   </v-row>
-  </v-col>
+  </div>
 </template>
 <script>
 export default {

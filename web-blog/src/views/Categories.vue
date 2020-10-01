@@ -3,8 +3,10 @@
     min-height="70vh"
     rounded="lg">
     <Title text="Categories" :subtext="category.title" />
+    <CategoryList
+    @getPostsByCategory="getPostsByCategory"
+    :categories="categories" />
     <PostList v-if="posts.length" :posts="posts" /> 
-    <CategoryList :categories="categories" />
   </v-sheet>
 </template>
 <script>
@@ -35,6 +37,14 @@ export default {
       this.posts = []
     }
     console.log(this.posts)
+  },
+  methods: {
+    async getPostsByCategory(id) {
+      console.log(':)', id)
+      this.category = await ApiService.getCategory(id)
+      this.posts =await ApiService.getPosts({'categories': id})
+
+    },
   }
 }
 </script>

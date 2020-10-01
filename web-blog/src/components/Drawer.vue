@@ -52,7 +52,9 @@ export default {
   data: () => ({
     item: 0,
     items: [
-      { icon: 'mdi-home', text: 'Recent' }
+      { icon: 'mdi-home', text: 'Home' },
+      { icon: 'mdi-newspaper-variant-multiple', text: 'Posts' },
+      { icon: 'mdi-shape', text: 'Categories' },
     ]
 
   }),
@@ -60,8 +62,15 @@ export default {
     go(name) {
       let url
       switch (name) {
-        case 'Recent':
+        case 'Home':
           url = `/`
+          break;
+        case 'Categories':
+          url = '/categories'
+          break;
+        case 'Posts':
+          url = '/posts'
+          break
       }
       this.$router.push({path: url })
     }

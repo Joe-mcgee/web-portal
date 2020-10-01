@@ -3,6 +3,7 @@
     min-height="70vh"
     rounded="lg"
   >
+  <Title text="Home" />
     <PostList :posts="recent" />
     <!--  -->
   </v-sheet>
@@ -13,10 +14,12 @@
 
 import * as ApiService from '@/shared/ApiService.js'
 import PostList from '@/components/PostList'
+import Title from '@/components/Title'
 export default {
   name: 'Home',
   components: {
-    PostList
+    PostList,
+    Title
   },
   data: () => ({
     recent: [],

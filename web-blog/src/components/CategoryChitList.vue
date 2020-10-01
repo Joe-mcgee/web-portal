@@ -9,7 +9,7 @@
     >
       <v-chip
 
-        @click="go('/categories/1')"
+        @click="go(category.id)"
         color="#FFC400"
         style="border: 1px solid black"
       >
@@ -36,9 +36,13 @@ export default {
 
   },
   methods: {
-    go(url) {
-      this.$router.push({path: url})
-    }
+    go(id) {
+      if (this.$route.params.id == id) {
+        return ''
+      } else {
+        this.$router.push({path:  `/categories/${id}`})
+      }
+    } 
   }
 }
 </script>

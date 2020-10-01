@@ -18,7 +18,7 @@
               >
               <v-row class="pt-0"
 
-              @click="go('posts', item.id)"
+              @click="go( item.id)"
                 >
                 <v-card-title
                   class="headline  py-0"
@@ -33,7 +33,7 @@
               class="pt-0"
               >
               <v-row 
-                @click="go('posts', item.id)"
+                @click="go( item.id)"
                 class="fill-height ma-0"
                 align="center"
                 justify="center"
@@ -52,7 +52,7 @@
             <v-card-text class="pt-0">
               {{item.content | truncate(300, '')}}
               <v-btn
-                @click="go('posts', item.id)"
+                @click="go(item.id)"
                 depressed
                 x-small
                 color="primary"
@@ -72,7 +72,6 @@
 <script>
 // @ is an alias to /src
 
-import * as ApiService from '@/shared/ApiService.js'
 import CategoryChitList from '@/components/CategoryChitList'
 import SubTitleList from '@/components/SubTitleList'
 export default {
@@ -82,17 +81,16 @@ export default {
   },
   components: {
     CategoryChitList,
-    SubTitleList
+    SubTitleList,
   },
   data: () => ({
     hover: false,
   }),
   async created() {
-    this.recent = await ApiService.getPosts()
   },
   methods: {
-    go(url, id) {
-      this.$router.push({path: `${url}/${id}`})
+    go(id) {
+      this.$router.push({path: `/posts/${id}`})
     }
   }
 }

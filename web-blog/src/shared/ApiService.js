@@ -74,6 +74,26 @@ export async function getPost(id) {
   return response.data
 }
 
+export async function getCategories(params) {
+  params = params ? {params} : {}
+  console.log(params)
+  const response = await axios.get(`${getUrl()}/categories`, params)
+  response.data = response.data.map((category) => {
+    category.logo.url = `${getUrl()}${category.logo.url}`
+    category.created_at = timeSince(new Date(category.created_at))
+    return category
+
+  })
+  return response.data
+}
+
+
+export async function getCategory(id) {
+  const response = await axios.get(`${getUrl()}/categories/${id}`)
+  response.data.logo.url = `${getUrl()}${response.data.logo.url}`
+  response.data.created_at = timeSince(new Date(response.data.created_at))
+  return response.data
+}
 export async function getContacts() {
   const response = await axios.get(`${getUrl()}/contacts`)
   response.data = response.data.map((contact) => {

@@ -1,5 +1,6 @@
 <template>
-  <v-row class="px-3">
+  <v-row
+    class="px-3">
     <v-col
       class="pt-1 pb-0 px-0"
       v-for="(category, j) in categories"
@@ -7,6 +8,8 @@
       
     >
       <v-chip
+
+        @click="go('/categories/1')"
         color="#FFC400"
         style="border: 1px solid black"
       >
@@ -32,5 +35,10 @@ export default {
   created() {
 
   },
+  methods: {
+    go(url) {
+      this.$router.push({path: url})
+    }
+  }
 }
 </script>

@@ -8,16 +8,22 @@
       :key="i"
       cols="12"
     >
-      <v-card
 
-      class="pl-3 pt-3"
+    <v-hover v-slot:default="{hover}">
+      <v-card
+      :elevation="hover ? 12: 2"
+      :class="{'on-hover': hover, 'pl-3': true, 'pt-3': true}"
       >
+        
         <div class="d-flex flex-no-wrap justify-space-between">
           <v-row class="pt-0 pl-0">
-            <v-col class="pt-0">
-              <v-row class="pt-0">
+            <v-col class="pt-0"
+              >
+              <v-row class="pt-0"
+
+              @click="go('posts', item.id)"
+                >
                 <v-card-title
-                  @click="go('posts', item.id)"
                   class="headline  py-0"
                   v-text="item.title"
                 ></v-card-title>
@@ -29,25 +35,37 @@
             <v-col
               class="pt-0"
               >
-              <v-row
+              <v-row 
+                @click="go('posts', item.id)"
                 class="fill-height ma-0"
                 align="center"
                 justify="center"
                 >
                 <v-img
                   max-width="20vmin"
-                  :src="item.logo.url"></v-img>
+                  :src="item.logo.url">
+                </v-img>
               </v-row>
             </v-col>                
           </v-row>
 
         </div>
-          <v-row>
+          <v-row
+            >
             <v-card-text class="pt-0">
-              {{item.content | truncate(300, '...')}}
+              {{item.content | truncate(300, '')}}
+              <v-btn
+                @click="go('posts', item.id)"
+                depressed
+                x-small
+                color="primary"
+              >
+                Read More
+            </v-btn>
             </v-card-text>
           </v-row>
       </v-card>
+    </v-hover>
     </v-col>
 
     <!--  -->
@@ -67,7 +85,8 @@ export default {
     SubTitleList
   },
   data: () => ({
-    recent: []
+    recent: [],
+    hover: false,
   }),
   async created() {
     this.recent = await ApiService.getPosts()

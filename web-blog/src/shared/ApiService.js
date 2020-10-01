@@ -53,8 +53,10 @@ function timeSince(date) {
   return Math.floor(seconds) + " seconds";
 }
 
-export async function getPosts() {
-  const response = await axios.get(`${getUrl()}/posts`)
+export async function getPosts(params) {
+  params = params ? {params} : {}
+  console.log(params)
+  const response = await axios.get(`${getUrl()}/posts`, params)
   response.data = response.data.map((blog) => {
     blog.logo.url = `${getUrl()}${blog.logo.url}`
     blog.created_at = timeSince(new Date(blog.created_at))

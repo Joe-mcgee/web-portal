@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Post from '../views/Post.vue'
+import Categories from '../views/Categories.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,6 +15,11 @@ const routes = [
     path: '/posts/:id',
     name: 'Post',
     component: Post,
+  },
+  {
+    path: '/categories/:id',
+    name: 'Categories',
+    component: Categories,
   },
   {
     path: '/about',

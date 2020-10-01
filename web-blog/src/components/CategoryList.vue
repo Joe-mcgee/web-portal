@@ -36,8 +36,15 @@
     data: () => ({}),
     methods: {
       getPostsByCategory(id) {
-        console.log(':|')
-        this.$emit('getPostsByCategory', id)
+        if (this.$route.name !== 'Categories') {
+          this.$router.push({path: `/categories/${id}`})
+        } else { 
+          if (this.$route.params.id !== id) {
+          this.$router.push({path: `/categories/${id}`})
+            return
+          }
+          this.$emit('getPostsByCategory', id)
+        }
       }
     }
   }

@@ -57,10 +57,13 @@ export async function getPosts(params) {
   params = params ? {params} : {}
   console.log(params)
   const response = await axios.get(`${getUrl()}/posts`, params)
-  response.data = response.data.map((blog) => {
-    blog.logo.url = `${getUrl()}${blog.logo.url}`
-    blog.created_at = timeSince(new Date(blog.created_at))
-    return blog
+  response.data = response.data.map((post) => {
+    post.logo.url = `${getUrl()}${post.logo.url}`
+    post.created_at = timeSince(new Date(post.created_at))
+    post.categories.map((category) => {
+      category.logo.url = `${getUrl()}${category.logo.url}`
+    })
+    return post
 
   })
   return response.data
@@ -71,6 +74,9 @@ export async function getPost(id) {
   const response = await axios.get(`${getUrl()}/posts/${id}`)
   response.data.logo.url = `${getUrl()}${response.data.logo.url}`
   response.data.created_at = timeSince(new Date(response.data.created_at))
+    response.data.categories.map((category) => {
+      category.logo.url = `${getUrl()}${category.logo.url}`
+    })
   return response.data
 }
 

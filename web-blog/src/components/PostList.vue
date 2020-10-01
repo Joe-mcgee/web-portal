@@ -27,7 +27,7 @@
                 <!-- title -->
               </v-row>
               <SubTitleList :post="item" />
-              <CategoryChitList :categories="item.categories" />
+              <CategoryList :categories="item.categories" />
             </v-col>                
             <v-col
               class="pt-0"
@@ -72,7 +72,7 @@
 <script>
 // @ is an alias to /src
 
-import CategoryChitList from '@/components/CategoryChitList'
+import CategoryList from '@/components/CategoryList'
 import SubTitleList from '@/components/SubTitleList'
 export default {
   name: 'Home',
@@ -80,7 +80,7 @@ export default {
     posts: Array,
   },
   components: {
-    CategoryChitList,
+    CategoryList,
     SubTitleList,
   },
   data: () => ({

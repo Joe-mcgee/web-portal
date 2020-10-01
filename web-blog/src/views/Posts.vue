@@ -20,7 +20,7 @@
         <h1>{{post.title}}</h1>
       </v-row>
       <SubTitleList v-if="post.id" :post=post />
-      <CategoryChitList v-if="post.id" :categories="post.categories"/>
+      <CategoryList v-if="post.id" :categories="post.categories"/>
         <v-row v-if="post.content"> 
           <v-card-text>
             {{post.content}}
@@ -31,7 +31,7 @@
 </template>
 <script>
 import * as ApiService from '@/shared/ApiService.js'
-import CategoryChitList from '@/components/CategoryChitList'
+import CategoryList from '@/components/CategoryList'
 import SubTitleList from '@/components/SubTitleList'
 import PostList from '@/components/PostList'
 import Title from '@/components/Title'
@@ -41,7 +41,7 @@ export default {
     PostList,
   },
   components: {
-    CategoryChitList,
+    CategoryList,
     SubTitleList,
     PostList,
     Title
@@ -58,6 +58,7 @@ export default {
     } else {
       this.post = {}
       this.posts = await ApiService.getPosts()
+      console.log('imp', this.posts)
     }
   },
 }

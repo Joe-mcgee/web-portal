@@ -24,8 +24,15 @@ module.exports = {
       }
     }
     return entities
-
-    
+  },
+  async findOne(ctx) {
+    const { id } = ctx.params;
+    let entity = await strapi.services.posts.findOne({ id });
+    entity = sanitizeEntity(entity, { model: strapi.models.posts });
+    for (const [j, category] of entity.categories.entries()) {
+      category.count = await strapi.services.posts.count({categories: category.id})
+    }
+    return entity
   },
 };
 

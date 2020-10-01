@@ -23,37 +23,8 @@
                 ></v-card-title>
                 <!-- title -->
               </v-row>
-              <v-row>
-                <!-- stuff -->
-                  <v-card-subtitle class="py-0" v-text="item.created_at"></v-card-subtitle>
-              </v-row>
-              <v-row
-                class="pl-3"
-                >
-                <!-- tags -->
-                <v-col
-                  class="pt-1 pb-0 px-0"
-                  justify="center"
-                  align="left"
-                  v-for="(category, j) in item.categories"
-                  :key="j"
-                >
-                  <v-chip
-                    color="#FFC400"
-                    style="border: 1px solid black"
-                  >
-                    <v-avatar
-                      left
-                      color="#003BFF"
-                      class="darken-4"
-                      style="color: #FFC400;"
-                      >
-                    {{category.count}}
-                    </v-avatar>
-                      {{category.title}}
-                  </v-chip>
-                </v-col>
-              </v-row> 
+              <SubTitleList :post="item" />
+              <CategoryChitList :categories="item.categories" />
             </v-col>                
             <v-col
               class="pt-0"
@@ -87,9 +58,13 @@
 // @ is an alias to /src
 
 import * as ApiService from '@/shared/ApiService.js'
+import CategoryChitList from '@/components/CategoryChitList'
+import SubTitleList from '@/components/SubTitleList'
 export default {
   name: 'Home',
   components: {
+    CategoryChitList,
+    SubTitleList
   },
   data: () => ({
     recent: []

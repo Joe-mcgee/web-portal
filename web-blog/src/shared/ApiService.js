@@ -58,8 +58,6 @@ export async function getPosts() {
   response.data = response.data.map((blog) => {
     blog.logo.url = `${getUrl()}${blog.logo.url}`
     blog.created_at = timeSince(new Date(blog.created_at))
-    console.log(blog.created_at)
-    
     return blog
 
   })
@@ -69,6 +67,8 @@ export async function getPosts() {
 
 export async function getPost(id) {
   const response = await axios.get(`${getUrl()}/posts/${id}`)
+  response.data.logo.url = `${getUrl()}${response.data.logo.url}`
+  response.data.created_at = timeSince(new Date(response.data.created_at))
   return response.data
 }
 

@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     go(id) {
-      window.open(`${process.env.VUE_APP_BLOG}/posts/${id}`, "_blank")
+      window.open(`https://${process.env.VUE_APP_BLOG}/posts/${id}`, "_blank")
     }
 
   },

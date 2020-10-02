@@ -6,7 +6,7 @@
       >Blog</mini-title>
     <logo-a
       
-      @click="go(blog.site)"
+      @click="go(blog.id)"
       :areas=areas
       v-for="(blog, i) in blogsFilter"
       :key="i + 'logo'"
@@ -16,7 +16,7 @@
     </logo-a>
 
     <title-a
-      @click="go(blog.site)"
+      @click="go(blog.id)"
       v-bind:nestData=nestData
       :areas=areas
       v-for="(blog, j) in blogsFilter"
@@ -73,10 +73,11 @@ export default {
   }),
   async created() {
     this.blogs = await ApiService.getPosts()
+    console.log(this.blogs)
   },
   methods: {
-    go(url) {
-      window.open(url, "_blank")
+    go(id) {
+      window.open(`${process.env.VUE_APP_BLOG}/posts/${id}`, "_blank")
     }
 
   },

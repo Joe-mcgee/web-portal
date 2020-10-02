@@ -48,6 +48,7 @@
 
         </div>
           <v-row
+            class="px-3"
             >
             <v-card-text class="pt-0">
               {{item.content | truncate(300, '')}}

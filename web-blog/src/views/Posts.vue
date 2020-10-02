@@ -21,7 +21,7 @@
       </v-row>
       <SubTitleList v-if="post.id" :post=post />
       <CategoryList v-if="post.id" :categories="post.categories"/>
-        <v-row v-if="post.content"> 
+        <v-row v-if="post.content" class="px-3"> 
           <v-card-text>
             {{post.content}}
           </v-card-text>
@@ -60,6 +60,7 @@ export default {
       this.posts = await ApiService.getPosts()
       console.log('imp', this.posts)
     }
+    this.loaded = true
   },
 }
 </script>

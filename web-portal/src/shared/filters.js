@@ -6,7 +6,7 @@ Vue.filter('truncate', function (text, position, suffix) {
       length = 90
       break
     case 1:
-      length = 64
+      length = 32
       break
     case 2:
       length = 11

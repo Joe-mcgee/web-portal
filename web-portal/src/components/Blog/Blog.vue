@@ -23,7 +23,7 @@
       :key="j + 'title'"
       :iterator="j"
       :href="blog.site">
-      {{blog.title}}
+      {{blog.title | truncate(areas.indexOf('blog'), '...')}}
     </title-a>
 
     <content-a
@@ -32,7 +32,7 @@
       v-for="(blog, k) in blogsFilter"
       :key="k + 'content'"
       :iterator="k">
-      {{blog.content}}
+      {{blog.content | truncate(areas.indexOf('blog'), '...')}}
     </content-a>
   </div>
 </template>

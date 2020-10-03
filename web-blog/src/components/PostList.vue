@@ -51,7 +51,9 @@
             class="px-3"
             >
             <v-card-text class="pt-0">
+              <vue-markdown>
               {{item.content | truncate(300, '')}}
+              </vue-markdown>
               <v-btn
                 @click="go(item.id)"
                 depressed
@@ -73,6 +75,7 @@
 <script>
 // @ is an alias to /src
 
+import VueMarkdown from 'vue-markdown'
 import CategoryList from '@/components/CategoryList'
 import SubTitleList from '@/components/SubTitleList'
 export default {
@@ -81,6 +84,7 @@ export default {
     posts: Array,
   },
   components: {
+    VueMarkdown,
     CategoryList,
     SubTitleList,
   },

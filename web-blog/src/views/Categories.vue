@@ -36,11 +36,9 @@ export default {
       this.categories = await ApiService.getCategories()
       this.posts = []
     }
-    console.log(this.posts)
   },
   methods: {
     async getPostsByCategory(id) {
-      console.log(':)', id)
       this.category = await ApiService.getCategory(id)
       this.posts =await ApiService.getPosts({'categories': id})
 

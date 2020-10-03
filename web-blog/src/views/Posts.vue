@@ -23,28 +23,32 @@
       <CategoryList v-if="post.id" :categories="post.categories"/>
         <v-row v-if="post.content" class="px-3"> 
           <v-card-text>
+            <vue-markdown>
             {{post.content}}
+            </vue-markdown>
           </v-card-text>
         </v-row>
     <PostList v-if="posts.length" :posts="posts" />
   </v-sheet>
 </template>
 <script>
+import VueMarkdown from 'vue-markdown'
 import * as ApiService from '@/shared/ApiService.js'
 import CategoryList from '@/components/CategoryList'
 import SubTitleList from '@/components/SubTitleList'
 import PostList from '@/components/PostList'
 import Title from '@/components/Title'
-console.log(ApiService)
 export default {
   props: {
     PostList,
   },
   components: {
+    VueMarkdown,
     CategoryList,
     SubTitleList,
     PostList,
-    Title
+    Title,
+
   },
   data: () => ({
     loaded: false,
@@ -58,7 +62,6 @@ export default {
     } else {
       this.post = {}
       this.posts = await ApiService.getPosts()
-      console.log('imp', this.posts)
     }
     this.loaded = true
   },

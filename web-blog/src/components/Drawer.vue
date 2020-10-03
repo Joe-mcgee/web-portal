@@ -58,9 +58,27 @@ export default {
     ]
 
   }),
+  created() {
+    let current = this.$route.name
+    switch (current) {
+      case 'Home':
+        this.item = 0
+        break
+      case 'Posts':
+        this.item = 1
+        break
+      case 'Categories':
+        this.item = 2
+        break
+    }
+
+  },
   methods: {
     go(name) {
       let url
+      if (name == this.$route.name) {
+        return
+      }
       switch (name) {
         case 'Home':
           url = `/`
@@ -72,8 +90,8 @@ export default {
           url = '/posts'
           break
       }
-      this.$router.push({path: url })
-    }
+      this.$router.push({path: url })}
+
   },
 }
 </script>

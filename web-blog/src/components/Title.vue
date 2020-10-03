@@ -1,7 +1,7 @@
 <template>
   <div>
   <v-row
-    class="fill-height py-3 color-text title"
+    class="fill-height py-3 title"
     justify="center"
     align="center">
   <h1 class="text-title">{{text}}</h1> 

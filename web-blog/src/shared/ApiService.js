@@ -54,9 +54,10 @@ function timeSince(date) {
 }
 
 export async function getPosts(params) {
-  params = params ? {params} : {}
-  console.log(params)
-  const response = await axios.get(`${getUrl()}/posts`, params)
+  let _sort = 'id:DESC'
+  params = params ? params : {}
+  params._sort = _sort
+  const response = await axios.get(`${getUrl()}/posts`, {params})
   response.data = response.data.map((post) => {
     post.logo.url = `${getUrl()}${post.logo.url}`
     post.created_at = timeSince(new Date(post.created_at))
@@ -82,7 +83,6 @@ export async function getPost(id) {
 
 export async function getCategories(params) {
   params = params ? {params} : {}
-  console.log(params)
   const response = await axios.get(`${getUrl()}/categories`, params)
   response.data = response.data.map((category) => {
     category.logo.url = `${getUrl()}${category.logo.url}`
